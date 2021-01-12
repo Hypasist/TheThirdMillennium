@@ -1,0 +1,20 @@
+# Compiled source #
+###################
+#*.com
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+#*.7z
+
+# Logs and databases #
+######################
+#*.log
+
+# OS generated files #
+######################
+#.DS_Store
+
+/.import*
+*.import

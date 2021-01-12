@@ -1,0 +1,180 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://MAIN.gd" type="Script" id=1]
+[ext_resource path="res://Ships.gd" type="Script" id=2]
+[ext_resource path="res://KESTREL.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Data/Control/ControlShip.gd" type="Script" id=4]
+[ext_resource path="res://OBJECT.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Data/Control/ControlPerson.gd" type="Script" id=6]
+[ext_resource path="res://Person.gd" type="Script" id=7]
+[ext_resource path="res://GUI_elements/GUI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Data/Cameras/CameraPerson.gd" type="Script" id=9]
+[ext_resource path="res://Assets/art/ping.png" type="Texture" id=10]
+[ext_resource path="res://People.gd" type="Script" id=11]
+[ext_resource path="res://Celestials.gd" type="Script" id=12]
+[ext_resource path="res://Data/Cameras/CameraBay.gd" type="Script" id=13]
+[ext_resource path="res://Assets/art/icon.png" type="Texture" id=14]
+[ext_resource path="res://Assets/background/back1.png" type="Texture" id=15]
+[ext_resource path="res://Assets/background/test_material.tres" type="Material" id=16]
+[ext_resource path="res://SPACE.gd" type="Script" id=17]
+[ext_resource path="res://Data/Cameras/CameraShip.gd" type="Script" id=18]
+[ext_resource path="res://Projectiles.gd" type="Script" id=19]
+[ext_resource path="res://Data/Cameras/CameraBuilder.gd" type="Script" id=20]
+[ext_resource path="res://Data/Control/ControlBuilder.gd" type="Script" id=21]
+[ext_resource path="res://Data/GUI/GUIPanels/CollectionPanel.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Data/Control/ControlBay.gd" type="Script" id=23]
+[ext_resource path="res://Data/GUI/GUIBuilder.gd" type="Script" id=24]
+[ext_resource path="res://Data/GUI/GUIShip.gd" type="Script" id=26]
+[ext_resource path="res://Data/GUI/GUIBay.gd" type="Script" id=27]
+[ext_resource path="res://Data/GUI/GUIPerson.gd" type="Script" id=28]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="GAME" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="GUIBay" type="CanvasLayer" parent="."]
+script = ExtResource( 27 )
+
+[node name="GUIShip" type="Control" parent="GUIBay"]
+mouse_filter = 2
+script = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipInfo" type="Label" parent="GUIBay/GUIShip"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 204.0
+margin_bottom = 44.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GUIPerson" type="Control" parent="GUIBay"]
+mouse_filter = 2
+script = ExtResource( 28 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GUIBuilder" type="Control" parent="GUIBay"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -1024.0
+margin_top = -300.0
+margin_bottom = 300.0
+mouse_filter = 2
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollectionPanel" parent="GUIBay/GUIBuilder" instance=ExtResource( 22 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -406.0
+margin_top = -258.0
+margin_right = 0.0
+margin_bottom = 258.0
+rect_pivot_offset = Vector2( 203, 258 )
+paddingRight = 0
+paddingBotton = 0
+
+[node name="ControlBay" type="Node" parent="."]
+script = ExtResource( 23 )
+
+[node name="ControlShip" type="Node" parent="ControlBay"]
+script = ExtResource( 4 )
+
+[node name="ControlPerson" type="Node" parent="ControlBay"]
+script = ExtResource( 6 )
+
+[node name="ControlBuilder" type="Node" parent="ControlBay"]
+script = ExtResource( 21 )
+
+[node name="CameraBay" type="Node" parent="."]
+script = ExtResource( 13 )
+
+[node name="CameraShip" type="Camera2D" parent="CameraBay"]
+current = true
+zoom = Vector2( 5, 5 )
+process_mode = 0
+limit_smoothed = true
+editor_draw_drag_margin = true
+script = ExtResource( 18 )
+
+[node name="CameraPerson" type="Camera2D" parent="CameraBay"]
+rotation = -2.53399e-05
+rotating = true
+zoom = Vector2( 0.05, 0.05 )
+process_mode = 0
+script = ExtResource( 9 )
+
+[node name="ping" type="Sprite" parent="CameraBay/CameraPerson"]
+rotation = 2.53399e-05
+scale = Vector2( 0.1, 0.1 )
+z_index = 1
+texture = ExtResource( 10 )
+
+[node name="CameraBuilder" type="Camera2D" parent="CameraBay"]
+rotating = true
+zoom = Vector2( 0.7, 0.7 )
+process_mode = 0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+script = ExtResource( 20 )
+
+[node name="Celestials" type="Node" parent="."]
+script = ExtResource( 12 )
+
+[node name="OBJECT" parent="Celestials" instance=ExtResource( 5 )]
+position = Vector2( 1278.02, 244.721 )
+rotation = 1.5708
+scale = Vector2( 4, 0.5 )
+
+[node name="Ships" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="KESTREL" parent="Ships" instance=ExtResource( 3 )]
+
+[node name="People" type="Node" parent="."]
+script = ExtResource( 11 )
+
+[node name="PERSON" type="KinematicBody2D" parent="People"]
+collision_layer = 4096
+collision_mask = 15360
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="People/PERSON"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="People/PERSON"]
+scale = Vector2( 0.3, 0.3 )
+shape = SubResource( 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="SPACE" type="Sprite" parent="ParallaxBackground"]
+material = ExtResource( 16 )
+scale = Vector2( 2.5739, 2.02172 )
+texture = ExtResource( 15 )
+centered = false
+script = ExtResource( 17 )
+
+[node name="Projectiles" type="Node" parent="."]
+script = ExtResource( 19 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource( 8 )]
+visible = false
+[connection signal="item_rect_changed" from="ParallaxBackground/SPACE" to="ParallaxBackground/SPACE" method="calculate_aspect_ratio"]

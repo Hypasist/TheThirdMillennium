@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends CollisionShape2D
+
+
+# I don't want collision to cover the whole tile
+const collisionRadiusDamp = (7.0/8.0)
+
+func swapVector(v:Vector2):
+    return Vector2(v.y, v.x)
+
+func setup(T, X, Y, tileSize, collisionSize, collisionCenter):
+    set_shape(CapsuleShape2D.new())
+    
+    if !T && !X && !Y: # 0
+        rotation_degrees = 0
+        position = collisionCenter
+        
+    if T && X && !Y: # 90
+        rotation_degrees = 90
+        tileSize = swapVector(tileSize)
+        position = swapVector(collisionCenter)
+    
+    if !T && X && Y: # 180
+        rotation_degrees = 180
+        position = Vector2(tileSize.x - collisionCenter.x, collisionCenter.y)
+        
+    if T && !X && Y: # 270
+        rotation_degrees = 270
+        tileSize = swapVector(tileSize)
+        position = Vector2(tileSize.x - collisionCenter.y, tileSize.y - collisionCenter.x)
+    
+    
+    if collisionSize.x > collisionSize.y: # rotate CapsuleShape
+        rotation_degrees += 90
+        get_shape().radius = collisionRadiusDamp * collisionSize.y / 2
+        get_shape().height = (collisionSize.x - collisionSize.y)
+    else:
+        get_shape().radius = collisionRadiusDamp * collisionSize.x / 2
+        get_shape().height = (collisionSize.y - collisionSize.x)
+        
+"
+
+[node name="InteractableTile" type="Area2D"]
+collision_layer = 0
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+script = SubResource( 1 )
