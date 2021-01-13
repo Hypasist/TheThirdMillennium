@@ -6,6 +6,7 @@ var followedPerson:Person = null
 
 func assignShip(ship:Ship):
     followedShip = ship
+    $GUIShip.assign2Entity(followedShip)
     $GUIBuilder.assignTilemapManager(followedShip.get_node("TilemapManager"))
     
 func assignPerson(person:Person):
@@ -14,7 +15,7 @@ func assignPerson(person:Person):
 func resolve_GUI_physics_process(viewMode):
     match viewMode:
         cons.SHIP_VIEW:
-            pass
+            $GUIShip.custom_gui_physics_process()
             
         cons.PERSONAL_VIEW:
             pass

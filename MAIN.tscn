@@ -1,8 +1,7 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://MAIN.gd" type="Script" id=1]
-[ext_resource path="res://Ships.gd" type="Script" id=2]
-[ext_resource path="res://KESTREL.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Data/Ships/Ships.gd" type="Script" id=2]
 [ext_resource path="res://Data/Control/ControlShip.gd" type="Script" id=4]
 [ext_resource path="res://OBJECT.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Data/Control/ControlPerson.gd" type="Script" id=6]
@@ -142,8 +141,6 @@ scale = Vector2( 4, 0.5 )
 
 [node name="Ships" type="Node" parent="."]
 script = ExtResource( 2 )
-
-[node name="KESTREL" parent="Ships" instance=ExtResource( 3 )]
 
 [node name="People" type="Node" parent="."]
 script = ExtResource( 11 )

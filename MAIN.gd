@@ -22,23 +22,24 @@ func _ready():
     # then treat player nodes specially
     # maybe assigning players to ship inside player node?
     # PROBABLY MOVE VISUAL CHANGES INTO ENTITY CLASS?
+    var SHIP = $Ships.addShip()
     
-    controlShip.assignControlledObject($Ships/KESTREL)
+    controlShip.assignControlledObject(SHIP)
     controlShip.assignCamera(cameraShip)
-    cameraShip.assign2Person($Ships/KESTREL)
+    cameraShip.assign2Person(SHIP)
     
     controlPerson.assignControlledObject($People/PERSON)
     controlPerson.assignCamera(cameraPerson)
     cameraPerson.assign2Person($People/PERSON)
     
-    controlBuilder.assignControlledObject($Ships/KESTREL)
+    controlBuilder.assignControlledObject(SHIP)
     controlBuilder.assignCamera(cameraBuilder)
-    cameraBuilder.assign2Person($Ships/KESTREL)
+    cameraBuilder.assign2Person(SHIP)
     
-    $GUIBay.assignShip($Ships/KESTREL)
+    $GUIBay.assignShip(SHIP)
     $GUIBay.assignPerson($People/PERSON)
     # place person in KESTREL
-    ($People/PERSON).enterShip($Ships/KESTREL)
+    ($People/PERSON).enterShip(SHIP)
     
     setGameState(gameMode)
     
@@ -87,8 +88,6 @@ func changeGameMode(mode):
 func _process(text):
     if Input.is_action_just_pressed("ui_swap"):
         toggleGameMode()
-    
-    GUIShip.setInfo($Ships/KESTREL.getShipInfo())
     
     #if Input.is_mouse_button_pressed(BUTTON_LEFT):
         #print(get_viewport().get_mouse_position())

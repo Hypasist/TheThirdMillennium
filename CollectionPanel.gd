@@ -27,7 +27,7 @@ func _on_CollectionPanel_texture_changed():
     set_custom_minimum_size(get_texture().get_size())
     
 func doesContainPoint(point: Vector2):
-    return $CollectionPanelCollider.doesCollisionShapeContain(point)
+    return $CollectionPanelCollider.doesCollisionShapeContain(point - get_position())
     
 var panelHiddenPosition 
 var panelShownPosition 

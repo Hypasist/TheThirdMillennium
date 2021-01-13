@@ -2,7 +2,7 @@
   "Arkusz1": {
     "HertigDoublePilotPanel": {
       "TileType": "PILOT_PANEL",
-      "TileGroup": "PANEL_TYPE",
+      "TileGroup": "PANEL_GROUP",
       "Tilemap": null,
       "TilemapID": 7,
       "TileSizeX": 2,
@@ -16,7 +16,7 @@
     },
     "HertigGunnerPanel": {
       "TileType": "GUNNER_PANEL",
-      "TileGroup": "PANEL_TYPE",
+      "TileGroup": "PANEL_GROUP",
       "Tilemap": null,
       "TilemapID": 8,
       "TileSizeX": 2,
@@ -30,7 +30,7 @@
     },
     "BasicSteelWall": {
       "TileType": "WALL",
-      "TileGroup": "WALL_TYPE",
+      "TileGroup": "PANEL_GROUP",
       "Tilemap": null,
       "TilemapID": 0,
       "TileSizeX": 1,
@@ -44,7 +44,7 @@
     },
     "BasicSteelFloor": {
       "TileType": "FLOOR",
-      "TileGroup": "FLOOR_TYPE",
+      "TileGroup": "PANEL_GROUP",
       "Tilemap": null,
       "TilemapID": 4,
       "TileSizeX": 1,

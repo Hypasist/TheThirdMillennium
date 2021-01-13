@@ -118,7 +118,7 @@ func custom_physics_process():
         # Calculate camera presumed position and rotation
         currentTileRecord = getTileRecordByName(currentTileName)
         var tileSize = operationalTilemaps.concludeTileSize(currentTileRecord, currentTileTransformation)
-        var mousePosition = (get_global_mouse_position() - ship.position).rotated(deg2rad(ship.rotation_degrees)) / scale
+        var mousePosition = (get_global_mouse_position() - ship.position).rotated(deg2rad(-ship.rotation_degrees)) / scale
         var mousePositionOffset = (Vector2(operationalTilemaps.get_cell_size().x * tileSize.x, operationalTilemaps.get_cell_size().y * tileSize.y) / 2 ) - \
                                             operationalTilemaps.get_cell_size() / 2
         var currentTilePosition = operationalTilemaps.world_to_map(mousePosition)

@@ -14,4 +14,5 @@ func hideGUI():
         pass
 
 func custom_gui_physics_process():
-    pass
+    setInfo(followedEntity.getShipInfo())
+    

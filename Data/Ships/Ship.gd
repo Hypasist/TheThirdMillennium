@@ -27,16 +27,6 @@ export var engineDampingMultiplier = 0.95
 
 
 func _init():
-    engines.append(["ui_forward", EngineType.new(15200, 400, 0, 0, [-100, -100])]) # back left
-    engines.append(["ui_forward", EngineType.new(15200, 400, 0, 0, [-100, 100])]) # back right
-    
-    engines.append(["ui_right", EngineType.new(4800, 400, 0, 0, [0, -50])]) # middle left
-    engines.append(["ui_left", EngineType.new(4800, 400, 0, 0, [0, 50])]) # middle right
-    
-    engines.append(["ui_turn_right", EngineType.new(4800, 400, 0, 0, [100, -150])]) # front left
-    engines.append(["ui_back", EngineType.new(4800, 400, 0, 0, [100, 0])]) # front center
-    engines.append(["ui_turn_left", EngineType.new(4800, 400, 0, 0, [100, 150])]) # front right
-    
     kinematic = KinematicType.new(10.0, 50.0, Vector2(0.0, 0.0), 0.8)
 
 func processMovement(delta):
@@ -95,3 +85,23 @@ func showInternals():
 func hideInternals():
     $TilemapManager.hide()
     $Hull.get_material().set_shader_param("greyout", false)
+
+
+
+func _ready():
+    pass
+    
+func setup():
+    position = Vector2(600, 600)
+    rotation_degrees = -180
+    kinematic.setPositionAll(position, rotation_degrees)
+    
+    
+func getShipInfo():
+    var velRel = kinematic.getVelocityAbsolute()
+    var velRot = kinematic.getVelocityRotational()
+    var momRel = kinematic.getMomentumAbsolute()
+    var momRot = kinematic.getMomentumRotational()
+    return "Pos: x:%4.2f  y:%4.2f  a:%4.2f\nVel: x:%4.2f  y:%4.2f  a:%4.2f\nMom: x:%4.2f  y:%4.2f  a:%4.2f\n" \
+    % [position.x, position.y, rotation_degrees, velRel.x, velRel.y, velRot, momRel.x, momRel.y, momRot]
+    

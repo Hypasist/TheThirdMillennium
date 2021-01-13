@@ -2,7 +2,6 @@ extends Area2D
 
 
 func doesCollisionShapeContain(point: Vector2):
-    point -= get_position()
     var shape = $CollisionPolygon2D.get_polygon()
     if(shape[5].x <= point.x && point.x <= shape[0].x):
         var localY = (shape[6].y - shape[5].y)/(shape[6].x - shape[5].x) * (point.x - shape[5].x) 
