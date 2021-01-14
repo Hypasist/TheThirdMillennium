@@ -4,11 +4,11 @@ var cons = preload("res://Data/Utils/Constants.gd")
 var ship = get_parent()
 
 var assignedElements = []
-var allowedTileTypes = []
+var allowedTileGroups = []
 
 func setup():
-    for tileType in allowedTileTypes:
-        var tileRecords = get_parent().getTileRecordsByType(tileType)
+    for tileGroup in allowedTileGroups:
+        var tileRecords = get_parent().getTileRecordsByGroup(tileGroup)
         for tileRecord in tileRecords:
             var elementsArray = get_used_cells_by_id(tileRecord["tileId"])
             for elementPosition in elementsArray:

@@ -5,4 +5,4 @@ extends CustomTileMap
                     
 
 func _ready():
-    allowedTileTypes = [cons.WALL_TYPE]
+    allowedTileGroups = [cons.WALL_GROUP]

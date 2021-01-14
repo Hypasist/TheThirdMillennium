@@ -9,7 +9,7 @@ func getTileTransform(tile):
     is_cell_x_flipped(tile.x, tile.y), is_cell_y_flipped(tile.x, tile.y)]
 
 func _ready():
-    allowedTileTypes = [cons.PANEL_TYPE]
+    allowedTileGroups = [cons.PANEL_GROUP]
     
     for panelType in knownPanelTypes:
         var panelTiles = get_used_cells_by_id(panelType[0])

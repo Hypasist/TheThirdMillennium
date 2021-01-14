@@ -92,6 +92,7 @@ position = Vector2( -285, -135 )
 rotation = 1.57079
 scale = Vector2( 0.4, 0.3 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="MainRightEngine" type="AnimatedSprite" parent="Hull"]
@@ -99,7 +100,6 @@ position = Vector2( -245, 135 )
 rotation = 1.5708
 scale = Vector2( 0.4, 0.1 )
 frames = SubResource( 3 )
-frame = 2
 playing = true
 script = ExtResource( 6 )
 
@@ -181,12 +181,6 @@ script = ExtResource( 7 )
 red = Color( 1, 0, 0, 0.686275 )
 green = Color( 0, 1, 0, 0.686275 )
 
-[node name="BluePrints" type="Sprite" parent="TilemapManager/OperationalTilemap"]
-position = Vector2( 3.33333, -2.54313e-05 )
-scale = Vector2( 3.33333, 3.33333 )
-z_index = -2
-texture = ExtResource( 18 )
-
 [node name="InteractableTilemap" type="TileMap" parent="TilemapManager"]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
@@ -196,3 +190,10 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -786433, 8, 0, -131044, 7, 0, 786431, 8, 0 )
 script = ExtResource( 12 )
+
+[node name="BluePrints" type="Sprite" parent="TilemapManager"]
+position = Vector2( 3.33333, -2.54313e-05 )
+rotation = 1.13687e-12
+scale = Vector2( 3.33333, 3.33333 )
+z_index = -2
+texture = ExtResource( 18 )
