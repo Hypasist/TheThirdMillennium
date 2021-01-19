@@ -14,5 +14,5 @@ func setup(transform, cellSize, tile):
     cellSize * panelSize, cellSize * collisionSize, cellSize * collisionCenter)
 "
 
-[node name="WeaponPanel" instance=ExtResource( 1 )]
+[node name="GunnerPanel" instance=ExtResource( 1 )]
 script = SubResource( 1 )

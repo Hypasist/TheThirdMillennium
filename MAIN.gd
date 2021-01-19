@@ -16,13 +16,25 @@ onready var GUIShip = $GUIBay/GUIShip
 
 var gameMode = cons.PERSONAL_VIEW
 
+var tilesetDatabase = null
+
+func getDatabases():
+    var database = get_tree().get_root().get_node("DataImport")
+    tilesetDatabase = database.getTilesetDatabase()
+
+func initializeBays():
+    $ShipBay.setTilesetDatabase(tilesetDatabase)
+
 func _ready():
     # to do:
     # make new script to change *EVERY* container member accroding to mode
     # then treat player nodes specially
     # maybe assigning players to ship inside player node?
     # PROBABLY MOVE VISUAL CHANGES INTO ENTITY CLASS?
-    var SHIP = $Ships.addShip()
+    getDatabases()
+    initializeBays()
+    
+    var SHIP = $ShipBay.addShip()
     
     controlShip.assignControlledObject(SHIP)
     controlShip.assignCamera(cameraShip)
@@ -97,7 +109,7 @@ func _physics_process(delta):
     $ControlBay.resolve_control_process()
     $GUIBay.resolve_GUI_physics_process(gameMode)
     $People.resolve_people_physics_process(delta)
-    $Ships.resolve_ships_physics_process(delta)
+    $ShipBay.resolve_ships_physics_process(delta)
     $Projectiles.resolve_projectiles_physics_process(delta)
     $CameraBay.resolve_camera_process(delta)
     #$Celestials.custom_physics_process_content(delta)

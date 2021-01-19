@@ -5,7 +5,6 @@
 [ext_resource path="res://experimentalShaders/pinkSun.shader" type="Shader" id=3]
 [ext_resource path="res://WeaponSlotsContainer.gd" type="Script" id=4]
 [ext_resource path="res://WeaponSlot.gd" type="Script" id=5]
-[ext_resource path="res://MainRightEngine.gd" type="Script" id=6]
 [ext_resource path="res://OperationalTile.gd" type="Script" id=7]
 [ext_resource path="res://ShipTiles.gd" type="Script" id=8]
 [ext_resource path="res://WallsTilemap.gd" type="Script" id=9]
@@ -19,6 +18,7 @@
 [ext_resource path="res://Assets/art/fire2.png" type="Texture" id=17]
 [ext_resource path="res://Assets/art/blueprint.jpg" type="Texture" id=18]
 [ext_resource path="res://Assets/art/test_cannon.png" type="Texture" id=19]
+[ext_resource path="res://Engine.gd" type="Script" id=20]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -92,16 +92,17 @@ position = Vector2( -285, -135 )
 rotation = 1.57079
 scale = Vector2( 0.4, 0.3 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
+script = ExtResource( 20 )
 
 [node name="MainRightEngine" type="AnimatedSprite" parent="Hull"]
 position = Vector2( -245, 135 )
 rotation = 1.5708
 scale = Vector2( 0.4, 0.1 )
 frames = SubResource( 3 )
+frame = 2
 playing = true
-script = ExtResource( 6 )
+script = ExtResource( 20 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
@@ -146,6 +147,7 @@ material = SubResource( 4 )
 position = Vector2( 0, 7.62939e-06 )
 scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 8 )
+saveConfiguration = null
 
 [node name="FloorTilemap" type="TileMap" parent="TilemapManager"]
 rotation = 1.13687e-12

@@ -1,6 +1,6 @@
 extends CustomTileMap
 
-var knownPanelTypes = [[2, preload("res://Data/ShipInteractables/WeaponPanel.tscn")], \
+var knownPanelTypes = [[2, preload("res://Data/ShipInteractables/GunnerPanel.tscn")], \
                        [3, preload("res://Data/ShipInteractables/PilotPanel.tscn")]]
 
                 

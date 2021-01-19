@@ -87,13 +87,13 @@ func hideInternals():
     $Hull.get_material().set_shader_param("greyout", false)
 
 
-
 func _ready():
     pass
     
-func setup():
-    position = Vector2(600, 600)
-    rotation_degrees = -180
+func setup(tilesetDatabase, _position, _rotation_degrees):
+    position = _position
+    rotation_degrees = _rotation_degrees
+    $TilemapManager.setup(tilesetDatabase)
     kinematic.setPositionAll(position, rotation_degrees)
     
     

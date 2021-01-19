@@ -139,7 +139,7 @@ position = Vector2( 1278.02, 244.721 )
 rotation = 1.5708
 scale = Vector2( 4, 0.5 )
 
-[node name="Ships" type="Node" parent="."]
+[node name="ShipBay" type="Node" parent="."]
 script = ExtResource( 2 )
 
 [node name="People" type="Node" parent="."]

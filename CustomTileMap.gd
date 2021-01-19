@@ -40,9 +40,9 @@ func doesContain(rect1:Rect2, tile:Vector2):
 
 func concludeTileSize(tileRecord, tileTransformation):
     if tileTransformation[0]:
-        return Vector2(tileRecord["tileSize"].y, tileRecord["tileSize"].x)
+        return Vector2(tileRecord["TileSize"].y, tileRecord["TileSize"].x)
     else:
-        return tileRecord["tileSize"]
+        return tileRecord["TileSize"]
 
 func pinpointElement(elementPosition):
     var targetElement = Rect2(elementPosition, Vector2(1,1))

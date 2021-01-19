@@ -107,6 +107,10 @@ _global_script_class_icons={
 config/name="The Third Millenium"
 run/main_scene="res://MAIN.tscn"
 
+[autoload]
+
+DataImport="*res://Data/Utils/DataImport/DataImport.gd"
+
 [display]
 
 window/size/resizable=false

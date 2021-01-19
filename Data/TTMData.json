@@ -1,13 +1,13 @@
 {
-  "Arkusz1": {
+  "Tilesets": {
     "HertigDoublePilotPanel": {
+      "TileID": 7,
       "TileType": "PILOT_PANEL",
       "TileGroup": "PANEL_GROUP",
       "Tilemap": null,
-      "TilemapID": 7,
       "TileSizeX": 2,
       "TileSizeY": 4,
-      "TileNode": "PilotPanel",
+      "TileScene": "PilotPanel",
       "TileCost": 80000,
       "TileFamily": "Hertig",
       "TileFraction": "Terra Republic",
@@ -15,13 +15,13 @@
       "TileDescription": "Double pilot panel, Herig model. Relatively cheap, yet sturdy. Not very comfy."
     },
     "HertigGunnerPanel": {
+      "TileID": 8,
       "TileType": "GUNNER_PANEL",
       "TileGroup": "PANEL_GROUP",
       "Tilemap": null,
-      "TilemapID": 8,
       "TileSizeX": 2,
       "TileSizeY": 2,
-      "TileNode": "GunnerPanel",
+      "TileScene": "GunnerPanel",
       "TileCost": 50000,
       "TileFamily": "Hertig",
       "TileFraction": "Terra Republic",
@@ -29,13 +29,13 @@
       "TileDescription": "Gunner station, Herig model. Relatively cheap, yet sturdy. Not very comfy."
     },
     "BasicSteelWall": {
+      "TileID": 0,
       "TileType": "WALL",
-      "TileGroup": "PANEL_GROUP",
+      "TileGroup": "WALL_GROUP",
       "Tilemap": null,
-      "TilemapID": 0,
       "TileSizeX": 1,
       "TileSizeY": 1,
-      "TileNode": null,
+      "TileScene": null,
       "TileCost": 1000,
       "TileFamily": "Basic",
       "TileFraction": "Terra Republic",
@@ -43,18 +43,23 @@
       "TileDescription": "Basic wall."
     },
     "BasicSteelFloor": {
+      "TileID": 4,
       "TileType": "FLOOR",
-      "TileGroup": "PANEL_GROUP",
+      "TileGroup": "FLOOR_GROUP",
       "Tilemap": null,
-      "TilemapID": 4,
       "TileSizeX": 1,
       "TileSizeY": 1,
-      "TileNode": null,
+      "TileScene": null,
       "TileCost": 500,
       "TileFamily": "Basic",
       "TileFraction": "Terra Republic",
       "TileName": "Steel Floor",
       "TileDescription": "Basic floor."
+    }
+  },
+  "Ships": {
+    "Kestrel": {
+      "ShipFraction": "Terra Republic"
     }
   }
 }
