@@ -55,6 +55,20 @@
       "TileFraction": "Terra Republic",
       "TileName": "Steel Floor",
       "TileDescription": "Basic floor."
+    },
+    "HertigPilotPanel": {
+      "TileID": 9,
+      "TileType": "PILOT_PANEL",
+      "TileGroup": "PANEL_GROUP",
+      "Tilemap": null,
+      "TileSizeX": 2,
+      "TileSizeY": 2,
+      "TileScene": null,
+      "TileCost": 50000,
+      "TileFamily": "Hertig",
+      "TileFraction": "Terra Republic",
+      "TileName": "Pilot panel, Hertig model",
+      "TileDescription": "Single pilot panel, Herig model. Relatively cheap, yet sturdy. Not very comfy."
     }
   },
   "Ships": {

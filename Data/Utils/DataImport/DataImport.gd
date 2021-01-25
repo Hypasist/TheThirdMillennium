@@ -1,3 +1,4 @@
+tool
 extends Node
 var cons = preload("res://Data/Utils/Constants.gd") 
 var fileName = "res://Data/TTMData.json"

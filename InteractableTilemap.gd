@@ -4,9 +4,6 @@ var knownPanelTypes = [[2, preload("res://Data/ShipInteractables/GunnerPanel.tsc
                        [3, preload("res://Data/ShipInteractables/PilotPanel.tscn")]]
 
                 
-func getTileTransform(tile):
-    return [is_cell_transposed(tile.x, tile.y), \
-    is_cell_x_flipped(tile.x, tile.y), is_cell_y_flipped(tile.x, tile.y)]
 
 func _ready():
     allowedTileGroups = [cons.PANEL_GROUP]

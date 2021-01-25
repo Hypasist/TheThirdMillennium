@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://MAIN.gd" type="Script" id=1]
 [ext_resource path="res://Data/Ships/Ships.gd" type="Script" id=2]
+[ext_resource path="res://Assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Data/Control/ControlShip.gd" type="Script" id=4]
 [ext_resource path="res://OBJECT.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Data/Control/ControlPerson.gd" type="Script" id=6]
@@ -26,6 +27,16 @@
 [ext_resource path="res://Data/GUI/GUIShip.gd" type="Script" id=26]
 [ext_resource path="res://Data/GUI/GUIBay.gd" type="Script" id=27]
 [ext_resource path="res://Data/GUI/GUIPerson.gd" type="Script" id=28]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 3 )
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -84,6 +95,42 @@ margin_bottom = 258.0
 rect_pivot_offset = Vector2( 203, 258 )
 paddingRight = 0
 paddingBotton = 0
+
+[node name="SaveButton" type="Button" parent="GUIBay/GUIBuilder"]
+margin_left = 300.0
+margin_top = 100.0
+margin_right = 500.0
+margin_bottom = 150.0
+custom_fonts/font = SubResource( 4 )
+text = "Save configuration"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadButton" type="Button" parent="GUIBay/GUIBuilder"]
+margin_left = 50.0
+margin_top = 100.0
+margin_right = 250.0
+margin_bottom = 150.0
+custom_fonts/font = SubResource( 3 )
+text = "Load configuration"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfigurationName" type="LineEdit" parent="GUIBay/GUIBuilder"]
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 525.0
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 2 )
+text = "newShipConfiguration"
+align = 1
+max_length = 64
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ControlBay" type="Node" parent="."]
 script = ExtResource( 23 )
@@ -151,7 +198,7 @@ collision_mask = 15360
 script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="People/PERSON"]
-scale = Vector2( 0.1, 0.1 )
+scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="People/PERSON"]
@@ -162,6 +209,7 @@ shape = SubResource( 1 )
 
 [node name="SPACE" type="Sprite" parent="ParallaxBackground"]
 material = ExtResource( 16 )
+position = Vector2( 0.5, 0 )
 scale = Vector2( 2.5739, 2.02172 )
 texture = ExtResource( 15 )
 centered = false
@@ -174,4 +222,6 @@ script = ExtResource( 19 )
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 8 )]
 visible = false
+[connection signal="button_up" from="GUIBay/GUIBuilder/SaveButton" to="GUIBay/GUIBuilder" method="_on_SaveButton_up"]
+[connection signal="button_up" from="GUIBay/GUIBuilder/LoadButton" to="GUIBay/GUIBuilder" method="_on_LoadButton_up"]
 [connection signal="item_rect_changed" from="ParallaxBackground/SPACE" to="ParallaxBackground/SPACE" method="calculate_aspect_ratio"]

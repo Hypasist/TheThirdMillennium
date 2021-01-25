@@ -140,14 +140,65 @@ func custom_physics_process():
     lastTileTransformation = null
         
 
-export (bool) var saveConfiguration = false setget saveConfiguration
-func saveConfiguration(_saveConfiguration):
+func saveConfiguration(configurationName):
+    var configurationFileName = "res://ShipConfigs/" + configurationName + ".sc"
     var saveFile = File.new()
-    saveFile.open("res://newShipConfiguration.sc", File.WRITE)
+    saveFile.open(configurationFileName, File.WRITE)
     
+    var consideredTilemaps = []
     var configuration = {}
+    for node in get_children():
+        if node.is_in_group("saveable_tilemaps"):
+            consideredTilemaps.append(node)
     
-    
-
+    for key in tilesetDatabase:
+        var id = tilesetDatabase[key]["TileID"]
+        var coordsArray = []
+        for tilemap in consideredTilemaps:
+            var tmpCoordsArray = tilemap.get_used_cells_by_id(id)
+            for coords in tmpCoordsArray:
+                if key == "HertigDoublePilotPanel": print(coords, " -- ", tilemap.getTileTransformCompound(coords))
+                coordsArray.append([coords.x, coords.y, tilemap.getTileTransformCompound(coords)])
+        configuration[key] = coordsArray
+        
     saveFile.store_line(to_json(configuration))
+    saveFile.close()
+
+
+func loadConfiguration(configurationName):
+    var configurationFileName = "res://ShipConfigs/" + configurationName + ".sc"
+    var saveFile = File.new()
+    if !saveFile.file_exists(configurationFileName):
+        print("File not found! ", configurationFileName)
+        breakpoint
+        
+    saveFile.open(configurationFileName, File.READ)
+    var configuration = JSON.parse(saveFile.get_as_text()).result
+    
+    for key in configuration:
+        if !tilesetDatabase.has(key):
+            print("Unrecognized configuration tileID! ", key)
+            breakpoint
+            continue
+        
+        var record = tilesetDatabase[key]
+        var coordsArray = configuration[key]
+        for coords in coordsArray:
+            match record["TileGroup"]:
+                cons.FLOOR_GROUP:
+                    $FloorTilemap.addElementCompound(record, Vector2(coords[0], coords[1]), coords[2])
+                cons.WALL_GROUP:
+                    $WallsTilemap.addElementCompound(record, Vector2(coords[0], coords[1]), coords[2])
+                cons.PANEL_GROUP:
+                    if key == "HertigDoublePilotPanel": print((Vector2(coords[0], coords[1])), " -- ", coords[2])
+                    $InteractableTilemap.addElementCompound(record, Vector2(coords[0], coords[1]), coords[2])
+                _:
+                    print("Unrecognized TileGroup! ", record["TileGroup"])
+                    breakpoint
+                    continue
+        
+    for node in get_children():
+        if node.is_in_group("saveable_tilemaps"):
+            node.update_bitmask_region()
+    
     saveFile.close()
