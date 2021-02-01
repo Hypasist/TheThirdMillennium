@@ -44,3 +44,5 @@ func changeDisplayedGUI(viewMode):
             followedShip.showInternals()
             
             
+func setup(tilesetDatabase, shipDatabase):
+    $GUIBuilder.setup(tilesetDatabase, shipDatabase)

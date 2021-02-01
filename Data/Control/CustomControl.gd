@@ -1,7 +1,7 @@
 class_name playerControl
 extends Node
-var cons = preload("res://Data/Utils/Constants.gd")
-var utils = preload("res://Data/Utils/Utils.gd")
+const cons = preload("res://Data/Utils/Constants.gd")
+const utils = preload("res://Data/Utils/Utils.gd")
 
 var controlledObject: Node = null
 var assignedCamera: Node = null

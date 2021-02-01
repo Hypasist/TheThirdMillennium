@@ -1,7 +1,7 @@
 tool
 extends NinePatchRect
 
-#var ObjectButtonType = preload("res://GUI/GUIPanels/ObjectButton.tscn")
+const cons = preload("res://Data/Utils/Constants.gd")
 
 export var paddingLeft = 50
 export var paddingRight = 2
@@ -31,8 +31,6 @@ func doesContainPoint(point: Vector2):
     
 var panelHiddenPosition 
 var panelShownPosition 
-var panelSlideTime = 0.7
-var buttonMargin = 40
 func _on_HideButton_pressed():
     $ShowButton.show()
     $ShowButton.set_disabled(true)
@@ -51,11 +49,26 @@ func _on_SlideTween_completed(object, key):
     $ShowButton.set_disabled(false)
     $HideButton.set_disabled(false)
 
-func _ready():
+
+var panelSlideTime = 0.7
+var buttonMargin = 40
+var tilesetDatabase = null
+func setup(_tilesetDatabase):
+    # ------- HIDE/SHOW
     panelShownPosition = get_position()
     panelHiddenPosition = get_position() + Vector2(get_size().x - buttonMargin, 0)
     $SlideTween.initialize(self, "rect_position", panelShownPosition, panelHiddenPosition, panelSlideTime, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
     set_position(panelHiddenPosition)
     $HideButton.hide()
 
+    # ------- SUPPLY
+    tilesetDatabase = _tilesetDatabase
+    for key in tilesetDatabase:
+        var item = tilesetDatabase[key]
+        if item["TileGroup"] != cons.FLOOR_GROUP:
+            $CollectionContainer.addButton(item)
 
+
+signal newRecordSelected(record)
+func _on_CollectionContainer_newRecordSelected(record):
+    emit_signal("newRecordSelected", record)

@@ -4,15 +4,14 @@ extends Button
 export (Color) var yellow
 export (Color) var white
 
-export(String) var nameLabel = "" setget setName
-export(Vector2) var iconSizeBoundaries = Vector2(100, 100) setget setIconSizeBoundaries
-export(Texture) var displayedTile = null setget displayTexture
 
+export(String) var nameLabel = "" setget setName
 func setName(newName):
     nameLabel = newName
     if $Name:
         $Name.set_text(newName)
 
+export(Vector2) var iconSizeBoundaries = Vector2(100, 100) setget setIconSizeBoundaries
 func updateIconSize():
     var texture = $Icon.get_texture()
     if texture:
@@ -29,7 +28,17 @@ func updateIconSize():
         $Icon.set_v_grow_direction(GROW_DIRECTION_BOTH)
         $Icon.set_h_grow_direction(GROW_DIRECTION_BOTH)
         
+func setTexture(textureSource):
+    var image = Image.new()
+    var err = image.load(textureSource)
+    if err != OK:
+        print("Couldn't load the texture! ", textureSource)
+        breakpoint
+    var texture = ImageTexture.new()
+    texture.create_from_image(image, 0)
+    displayTexture(texture)
 
+export(Texture) var displayedTile = null setget displayTexture
 func displayTexture(newTexture):
     #if(Engine.is_editor_hint()):
     displayedTile = newTexture
@@ -38,6 +47,12 @@ func displayTexture(newTexture):
         $Icon.set_texture(displayedTile)
         updateIconSize()
         set_disabled(true if displayedTile == null else false)
+
+var recordRepresented = null
+func setRecord(_recordRepresented):
+    recordRepresented = _recordRepresented
+func getRecord():
+    return recordRepresented
 
 func setIconSizeBoundaries(newBoundaries):
     iconSizeBoundaries = newBoundaries
@@ -52,6 +67,5 @@ func _on_Button_mouse_exited():
 
 
 signal objectSelected(button, button_pressed)
-
 func _on_Button_toggled(button_pressed):
     emit_signal("objectSelected", self, button_pressed)

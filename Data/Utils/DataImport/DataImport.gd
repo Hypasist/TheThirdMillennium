@@ -2,7 +2,11 @@ tool
 extends Node
 var cons = preload("res://Data/Utils/Constants.gd") 
 var fileName = "res://Data/TTMData.json"
+
 var tileSceneSource = "res://Data/ShipInteractables/"
+var tileSpriteSource = "res://Assets/ShipObjects/"
+
+var shipModelSource = "res://Assets/Ships/"
 
 func readAndParseDatabase():
     var file = File.new()
@@ -54,16 +58,26 @@ func parseTilemaps(input: Dictionary):
         if item["TileScene"]:
             item["TileScene"] = tileSceneSource + item["TileScene"] + ".tscn"
         
+        if item["TileSprite"]:
+            item["TileSprite"] = tileSpriteSource + item["TileSprite"] + ".png"
+            
     return input
         
 func parseShips(input: Dictionary):
-    pass    
+    for key in input.keys():
+        var item = input[key]
+        if item["ShipGraphic"]:
+            item["ShipGraphic"] = shipModelSource + item["ShipGraphic"]
+    return input
 
 var tilesetDatabase = null
+var shipDatabase = null
 func _ready():
     var database = readAndParseDatabase()
     tilesetDatabase = parseTilemaps(database["Tilesets"])
-    var shipDatabase = parseShips(database["Ships"])
+    shipDatabase = parseShips(database["Ships"])
     
 func getTilesetDatabase():
     return tilesetDatabase
+func getShipDatabase():
+    return shipDatabase

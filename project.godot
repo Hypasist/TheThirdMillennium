@@ -113,8 +113,11 @@ DataImport="*res://Data/Utils/DataImport/DataImport.gd"
 
 [display]
 
+window/size/width=1920
+window/size/height=1200
 window/size/resizable=false
 window/size/borderless=true
+window/size/fullscreen=true
 mouse_cursor/custom_image="res://Assets/art/cursor.png"
 mouse_cursor/custom_image_hotspot=Vector2( 7, 7 )
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Cannon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/KestrelTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://experimentalShaders/pinkSun.shader" type="Shader" id=3]
 [ext_resource path="res://WeaponSlotsContainer.gd" type="Script" id=4]
 [ext_resource path="res://WeaponSlot.gd" type="Script" id=5]
+[ext_resource path="res://Assets/art/KESTREL.png" type="Texture" id=6]
 [ext_resource path="res://OperationalTile.gd" type="Script" id=7]
 [ext_resource path="res://ShipTiles.gd" type="Script" id=8]
 [ext_resource path="res://WallsTilemap.gd" type="Script" id=9]
@@ -14,9 +15,7 @@
 [ext_resource path="res://FloorTilemap.gd" type="Script" id=13]
 [ext_resource path="res://Assets/art/fire1.png" type="Texture" id=14]
 [ext_resource path="res://Assets/art/fire3.png" type="Texture" id=15]
-[ext_resource path="res://Assets/art/kestrel2.png" type="Texture" id=16]
 [ext_resource path="res://Assets/art/fire2.png" type="Texture" id=17]
-[ext_resource path="res://Assets/art/blueprint.jpg" type="Texture" id=18]
 [ext_resource path="res://Assets/art/test_cannon.png" type="Texture" id=19]
 [ext_resource path="res://Engine.gd" type="Script" id=20]
 
@@ -82,10 +81,9 @@ shader_param/currentColour = Color( 0.92549, 0.933333, 0.541176, 1 )
 script = ExtResource( 10 )
 
 [node name="Hull" type="Sprite" parent="."]
-visible = false
 material = SubResource( 2 )
 rotation = 1.13687e-12
-texture = ExtResource( 16 )
+texture = ExtResource( 6 )
 script = ExtResource( 11 )
 
 [node name="MainLeftEngine" type="AnimatedSprite" parent="Hull"]
@@ -93,7 +91,6 @@ position = Vector2( -285, -135 )
 rotation = 1.57079
 scale = Vector2( 0.4, 0.3 )
 frames = SubResource( 3 )
-frame = 2
 playing = true
 script = ExtResource( 20 )
 
@@ -102,7 +99,7 @@ position = Vector2( -281.256, 135 )
 rotation = 1.5708
 scale = Vector2( 0.4, 0.281279 )
 frames = SubResource( 3 )
-frame = 1
+frame = 2
 playing = true
 script = ExtResource( 20 )
 
@@ -187,11 +184,6 @@ format = 1
 script = ExtResource( 7 )
 red = Color( 1, 0, 0, 0.686275 )
 green = Color( 0, 1, 0, 0.686275 )
-
-[node name="BluePrints" type="Sprite" parent="TilemapManager/OperationalTilemap"]
-position = Vector2( 3.33333, -2.54313e-05 )
-z_index = -2
-texture = ExtResource( 18 )
 
 [node name="InteractableTilemap" type="TileMap" parent="TilemapManager" groups=[
 "saveable_tilemaps",

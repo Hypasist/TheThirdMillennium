@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://GUI_elements/Counter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/GUI/emeralds_icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/GUI_bar_for_later/emeralds_icon.png" type="Texture" id=2]
+
 
 
 

@@ -17,13 +17,16 @@ onready var GUIShip = $GUIBay/GUIShip
 var gameMode = cons.PERSONAL_VIEW
 
 var tilesetDatabase = null
+var shipDatabase = null
 
 func getDatabases():
     var database = get_tree().get_root().get_node("DataImport")
     tilesetDatabase = database.getTilesetDatabase()
+    shipDatabase = database.getShipDatabase()
 
 func initializeBays():
-    $ShipBay.setTilesetDatabase(tilesetDatabase)
+    $ShipBay.setup(tilesetDatabase)
+    $GUIBay.setup(tilesetDatabase, shipDatabase)
 
 func _ready():
     # to do:
@@ -113,4 +116,3 @@ func _physics_process(delta):
     $Projectiles.resolve_projectiles_physics_process(delta)
     $CameraBay.resolve_camera_process(delta)
     #$Celestials.custom_physics_process_content(delta)
-

@@ -1,8 +1,8 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://MAIN.gd" type="Script" id=1]
 [ext_resource path="res://Data/Ships/Ships.gd" type="Script" id=2]
-[ext_resource path="res://Assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Data/GUI/GUIPanels/ConfigurationPanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Data/Control/ControlShip.gd" type="Script" id=4]
 [ext_resource path="res://OBJECT.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Data/Control/ControlPerson.gd" type="Script" id=6]
@@ -24,21 +24,19 @@
 [ext_resource path="res://Data/GUI/GUIPanels/CollectionPanel.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Data/Control/ControlBay.gd" type="Script" id=23]
 [ext_resource path="res://Data/GUI/GUIBuilder.gd" type="Script" id=24]
+[ext_resource path="res://Assets/art/blueprint_tile.png" type="Texture" id=25]
 [ext_resource path="res://Data/GUI/GUIShip.gd" type="Script" id=26]
 [ext_resource path="res://Data/GUI/GUIBay.gd" type="Script" id=27]
 [ext_resource path="res://Data/GUI/GUIPerson.gd" type="Script" id=28]
+[ext_resource path="res://BluePrint.gd" type="Script" id=29]
+[ext_resource path="res://experimentalShaders/bluePrintShader.shader" type="Shader" id=30]
 
-[sub_resource type="DynamicFont" id=4]
-font_data = ExtResource( 3 )
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 30 )
+shader_param/tiled_factor = Vector2( 16, 9.475 )
+shader_param/aspect_ratio = 0.592188
 
-[sub_resource type="DynamicFont" id=3]
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 20
-font_data = ExtResource( 3 )
-
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 
 [node name="GAME" type="Node2D"]
 script = ExtResource( 1 )
@@ -70,13 +68,8 @@ __meta__ = {
 }
 
 [node name="GUIBuilder" type="Control" parent="GUIBay"]
-anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -1024.0
-margin_top = -300.0
-margin_bottom = 300.0
+anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 24 )
 __meta__ = {
@@ -88,49 +81,25 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -406.0
-margin_top = -258.0
+margin_left = -500.0
+margin_top = -386.0
 margin_right = 0.0
-margin_bottom = 258.0
-rect_pivot_offset = Vector2( 203, 258 )
+margin_bottom = 386.0
+rect_pivot_offset = Vector2( 250, 386 )
 paddingRight = 0
 paddingBotton = 0
 
-[node name="SaveButton" type="Button" parent="GUIBay/GUIBuilder"]
-margin_left = 300.0
-margin_top = 100.0
-margin_right = 500.0
-margin_bottom = 150.0
-custom_fonts/font = SubResource( 4 )
-text = "Save configuration"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ConfigurationPanel" parent="GUIBay/GUIBuilder" instance=ExtResource( 3 )]
 
-[node name="LoadButton" type="Button" parent="GUIBay/GUIBuilder"]
-margin_left = 50.0
-margin_top = 100.0
-margin_right = 250.0
-margin_bottom = 150.0
-custom_fonts/font = SubResource( 3 )
-text = "Load configuration"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ConfigurationName" type="LineEdit" parent="GUIBay/GUIBuilder"]
-margin_left = 25.0
-margin_top = 25.0
-margin_right = 525.0
-margin_bottom = 75.0
-custom_fonts/font = SubResource( 2 )
-text = "newShipConfiguration"
-align = 1
-max_length = 64
-caret_blink = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="BluePrint" type="Sprite" parent="GUIBay/GUIBuilder"]
+visible = false
+material = SubResource( 1 )
+scale = Vector2( 34.1333, 20.2133 )
+z_index = -2
+z_as_relative = false
+texture = ExtResource( 25 )
+centered = false
+script = ExtResource( 29 )
 
 [node name="ControlBay" type="Node" parent="."]
 script = ExtResource( 23 )
@@ -203,14 +172,13 @@ texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="People/PERSON"]
 scale = Vector2( 0.3, 0.3 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="SPACE" type="Sprite" parent="ParallaxBackground"]
 material = ExtResource( 16 )
-position = Vector2( 0.5, 0 )
-scale = Vector2( 2.5739, 2.02172 )
+scale = Vector2( 5, 4 )
 texture = ExtResource( 15 )
 centered = false
 script = ExtResource( 17 )
@@ -222,6 +190,5 @@ script = ExtResource( 19 )
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 8 )]
 visible = false
-[connection signal="button_up" from="GUIBay/GUIBuilder/SaveButton" to="GUIBay/GUIBuilder" method="_on_SaveButton_up"]
-[connection signal="button_up" from="GUIBay/GUIBuilder/LoadButton" to="GUIBay/GUIBuilder" method="_on_LoadButton_up"]
+[connection signal="newRecordSelected" from="GUIBay/GUIBuilder/CollectionPanel" to="GUIBay/GUIBuilder" method="_on_CollectionPanel_newRecordSelected"]
 [connection signal="item_rect_changed" from="ParallaxBackground/SPACE" to="ParallaxBackground/SPACE" method="calculate_aspect_ratio"]

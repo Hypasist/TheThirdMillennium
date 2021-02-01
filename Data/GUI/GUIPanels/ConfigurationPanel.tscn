@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Data/GUI/GUIPanels/ConfigurationPanel.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 1 )
+
+[node name="ConfigurationPanel" type="NinePatchRect"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewButton" type="Button" parent="."]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 90.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 1 )
+text = "New"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClearButton" type="Button" parent="."]
+margin_left = 100.0
+margin_top = 5.0
+margin_right = 180.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 1 )
+text = "Clear"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoadButton" type="Button" parent="."]
+margin_left = 190.0
+margin_top = 5.0
+margin_right = 270.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 1 )
+text = "Load"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveButton" type="Button" parent="."]
+margin_left = 280.0
+margin_top = 5.0
+margin_right = 360.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 2 )
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveAsButton" type="Button" parent="."]
+margin_left = 370.0
+margin_top = 5.0
+margin_right = 450.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 2 )
+text = "Save As"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ModelName" type="LineEdit" parent="."]
+margin_left = 10.0
+margin_top = 55.0
+margin_right = 400.0
+margin_bottom = 95.0
+custom_fonts/font = SubResource( 3 )
+text = "Model:"
+align = 1
+max_length = 64
+placeholder_text = "Model Name"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipName" type="LineEdit" parent="."]
+margin_left = 10.0
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 140.0
+custom_fonts/font = SubResource( 3 )
+align = 1
+max_length = 64
+placeholder_text = "Ship Name"
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_up" from="NewButton" to="." method="_on_NewButton_up"]
+[connection signal="button_up" from="ClearButton" to="." method="_on_ClearButton_up"]
+[connection signal="button_up" from="LoadButton" to="." method="_on_LoadButton_up"]
+[connection signal="button_up" from="SaveButton" to="." method="_on_SaveButton_up"]
+[connection signal="button_up" from="SaveAsButton" to="." method="_on_SaveAsButton_up"]

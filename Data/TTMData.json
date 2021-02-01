@@ -1,32 +1,19 @@
 {
   "Tilesets": {
-    "HertigDoublePilotPanel": {
-      "TileID": 7,
-      "TileType": "PILOT_PANEL",
-      "TileGroup": "PANEL_GROUP",
+    "BasicSteelFloor": {
+      "TileID": 4,
+      "TileType": "FLOOR",
+      "TileGroup": "FLOOR_GROUP",
       "Tilemap": null,
-      "TileSizeX": 2,
-      "TileSizeY": 4,
-      "TileScene": "PilotPanel",
-      "TileCost": 80000,
-      "TileFamily": "Hertig",
+      "TileSizeX": 1,
+      "TileSizeY": 1,
+      "TileScene": null,
+      "TileSprite": null,
+      "TileCost": 500,
+      "TileFamily": "Basic",
       "TileFraction": "Terra Republic",
-      "TileName": "Double pilot panel, Hertig model",
-      "TileDescription": "Double pilot panel, Herig model. Relatively cheap, yet sturdy. Not very comfy."
-    },
-    "HertigGunnerPanel": {
-      "TileID": 8,
-      "TileType": "GUNNER_PANEL",
-      "TileGroup": "PANEL_GROUP",
-      "Tilemap": null,
-      "TileSizeX": 2,
-      "TileSizeY": 2,
-      "TileScene": "GunnerPanel",
-      "TileCost": 50000,
-      "TileFamily": "Hertig",
-      "TileFraction": "Terra Republic",
-      "TileName": "Gunner Station, Hertig model",
-      "TileDescription": "Gunner station, Herig model. Relatively cheap, yet sturdy. Not very comfy."
+      "TileName": "Steel Floor",
+      "TileDescription": "Basic floor."
     },
     "BasicSteelWall": {
       "TileID": 0,
@@ -36,25 +23,27 @@
       "TileSizeX": 1,
       "TileSizeY": 1,
       "TileScene": null,
+      "TileSprite": "wall3x1",
       "TileCost": 1000,
       "TileFamily": "Basic",
       "TileFraction": "Terra Republic",
       "TileName": "Steel Wall",
       "TileDescription": "Basic wall."
     },
-    "BasicSteelFloor": {
-      "TileID": 4,
-      "TileType": "FLOOR",
-      "TileGroup": "FLOOR_GROUP",
+    "HertigDoublePilotPanel": {
+      "TileID": 7,
+      "TileType": "PILOT_PANEL",
+      "TileGroup": "PANEL_GROUP",
       "Tilemap": null,
-      "TileSizeX": 1,
-      "TileSizeY": 1,
-      "TileScene": null,
-      "TileCost": 500,
-      "TileFamily": "Basic",
+      "TileSizeX": 2,
+      "TileSizeY": 4,
+      "TileScene": "PilotPanel",
+      "TileSprite": "pilotPanel2x4",
+      "TileCost": 80000,
+      "TileFamily": "Hertig",
       "TileFraction": "Terra Republic",
-      "TileName": "Steel Floor",
-      "TileDescription": "Basic floor."
+      "TileName": "Double pilot panel",
+      "TileDescription": "Double pilot panel, Herig model. Relatively cheap, yet sturdy. Not very comfy."
     },
     "HertigPilotPanel": {
       "TileID": 9,
@@ -63,17 +52,40 @@
       "Tilemap": null,
       "TileSizeX": 2,
       "TileSizeY": 2,
-      "TileScene": null,
+      "TileScene": "PilotPanel",
+      "TileSprite": "pilotPanel2x2",
       "TileCost": 50000,
       "TileFamily": "Hertig",
       "TileFraction": "Terra Republic",
-      "TileName": "Pilot panel, Hertig model",
+      "TileName": "Pilot panel",
       "TileDescription": "Single pilot panel, Herig model. Relatively cheap, yet sturdy. Not very comfy."
+    },
+    "HertigGunnerPanel": {
+      "TileID": 8,
+      "TileType": "GUNNER_PANEL",
+      "TileGroup": "PANEL_GROUP",
+      "Tilemap": null,
+      "TileSizeX": 2,
+      "TileSizeY": 2,
+      "TileScene": "GunnerPanel",
+      "TileSprite": "gunnerPanel2x2",
+      "TileCost": 50000,
+      "TileFamily": "Hertig",
+      "TileFraction": "Terra Republic",
+      "TileName": "Gunner Station",
+      "TileDescription": "Gunner station, Herig model. Relatively cheap, yet sturdy. Not very comfy."
     }
   },
   "Ships": {
     "Kestrel": {
-      "ShipFraction": "Terra Republic"
+      "ShipClass": "Frigate",
+      "ShipFraction": "Terra Republic",
+      "ShipGraphic": "Kestrel.png"
+    },
+    "Jay": {
+      "ShipClass": "Civil Class Corvette",
+      "ShipFraction": "Terra Republic",
+      "ShipGraphic": "Jay.png"
     }
   }
 }

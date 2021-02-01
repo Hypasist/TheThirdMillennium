@@ -2,7 +2,7 @@ extends Node
 
 var tilesetDatabase = null
 
-func setTilesetDatabase(_tilesetDatabase:Dictionary):
+func setup(_tilesetDatabase:Dictionary):
     tilesetDatabase = _tilesetDatabase
 
 func resolve_ships_physics_process(delta):

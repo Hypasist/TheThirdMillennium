@@ -6,6 +6,9 @@ var tilemapManager = null
 
 func assignTilemapManager(entity):
     tilemapManager = entity
+func setup(_tilesetDatabase:Dictionary, _shipDatabase:Dictionary):
+    $ConfigurationPanel.setup(_shipDatabase)
+    $CollectionPanel.setup(_tilesetDatabase)
     
 func passInputs(inputs:Array):
     gatheredInputs = inputs
@@ -32,3 +35,7 @@ func _on_SaveButton_up():
 
 func _on_LoadButton_up():
     tilemapManager.loadConfiguration($ConfigurationName.get_text())
+
+var currentlySelectedRecord = null
+func _on_CollectionPanel_newRecordSelected(record):
+    currentlySelectedRecord = record

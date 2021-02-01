@@ -1,8 +1,8 @@
 class_name CustomCamera
 extends Camera2D
 
-var utils = preload("res://Data/Utils/Utils.gd")
-var TweenType = preload("res://Data/Utils/CustomTween2.gd")
+const utils = preload("res://Data/Utils/Utils.gd")
+const TweenType = preload("res://Data/Utils/CustomTween2.gd")
 var zoomTween = null
 
 var followedEntity = null

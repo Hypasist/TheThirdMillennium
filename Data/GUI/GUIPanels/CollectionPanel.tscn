@@ -1,19 +1,15 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://CollectionPanel.gd" type="Script" id=1]
-[ext_resource path="res://Assets/art/kestrel/pilotPanel2x4.png" type="Texture" id=2]
 [ext_resource path="res://Assets/art/ninepatch.png" type="Texture" id=3]
-[ext_resource path="res://Data/GUI/GUIPanels/ObjectButton.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/art/kestrel/weaponPanel2x2.png" type="Texture" id=5]
-[ext_resource path="res://Assets/art/kestrel/wall3x1.png" type="Texture" id=6]
 [ext_resource path="res://assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Data/Utils/CustomTween2.gd" type="Script" id=8]
-[ext_resource path="res://Assets/art/GUI/arrow_right_off.png" type="Texture" id=9]
-[ext_resource path="res://Assets/art/GUI/arrow_right_on.png" type="Texture" id=10]
-[ext_resource path="res://Assets/art/GUI/arrow_right_hover.png" type="Texture" id=11]
-[ext_resource path="res://Assets/art/GUI/arrow_left_off.png" type="Texture" id=12]
-[ext_resource path="res://Assets/art/GUI/arrow_left_on.png" type="Texture" id=13]
-[ext_resource path="res://Assets/art/GUI/arrow_left_hover.png" type="Texture" id=14]
+[ext_resource path="res://Assets/GUI/arrow_right_off.png" type="Texture" id=9]
+[ext_resource path="res://Assets/GUI/arrow_right_on.png" type="Texture" id=10]
+[ext_resource path="res://Assets/GUI/arrow_right_hover.png" type="Texture" id=11]
+[ext_resource path="res://Assets/GUI/arrow_left_off.png" type="Texture" id=12]
+[ext_resource path="res://Assets/GUI/arrow_left_on.png" type="Texture" id=13]
+[ext_resource path="res://Assets/GUI/arrow_left_hover.png" type="Texture" id=14]
 [ext_resource path="res://Data/GUI/GUIPanels/CollectionPanelCollider.gd" type="Script" id=15]
 [ext_resource path="res://Data/GUI/GUIPanels/CollectionContainer.gd" type="Script" id=16]
 
@@ -72,43 +68,6 @@ columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Button" parent="CollectionContainer/HBoxContainer/GridContainer" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 172.0
-margin_bottom = 150.0
-disabled = false
-nameLabel = "SomeTgons"
-displayedTile = ExtResource( 2 )
-
-[node name="Button2" parent="CollectionContainer/HBoxContainer/GridContainer" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 176.0
-margin_right = 348.0
-margin_bottom = 150.0
-disabled = false
-nameLabel = "PanelPanel"
-displayedTile = ExtResource( 5 )
-
-[node name="Button3" parent="CollectionContainer/HBoxContainer/GridContainer" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 154.0
-margin_right = 172.0
-margin_bottom = 304.0
-disabled = false
-nameLabel = "Hahah"
-displayedTile = ExtResource( 6 )
-
-[node name="Button4" parent="CollectionContainer/HBoxContainer/GridContainer" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 176.0
-margin_top = 154.0
-margin_right = 348.0
-margin_bottom = 304.0
 
 [node name="RightMargin" type="Control" parent="CollectionContainer/HBoxContainer"]
 margin_left = 353.0
@@ -169,10 +128,7 @@ __meta__ = {
 script = ExtResource( 8 )
 [connection signal="resized" from="." to="." method="_on_CollectionPanel_resized"]
 [connection signal="texture_changed" from="." to="." method="_on_CollectionPanel_texture_changed"]
-[connection signal="objectSelected" from="CollectionContainer/HBoxContainer/GridContainer/Button" to="CollectionContainer" method="_on_Button_objectSelected"]
-[connection signal="objectSelected" from="CollectionContainer/HBoxContainer/GridContainer/Button2" to="CollectionContainer" method="_on_Button_objectSelected"]
-[connection signal="objectSelected" from="CollectionContainer/HBoxContainer/GridContainer/Button3" to="CollectionContainer" method="_on_Button_objectSelected"]
-[connection signal="objectSelected" from="CollectionContainer/HBoxContainer/GridContainer/Button4" to="CollectionContainer" method="_on_Button_objectSelected"]
+[connection signal="newRecordSelected" from="CollectionContainer" to="." method="_on_CollectionContainer_newRecordSelected"]
 [connection signal="pressed" from="HideButton" to="." method="_on_HideButton_pressed"]
 [connection signal="pressed" from="ShowButton" to="." method="_on_ShowButton_pressed"]
 [connection signal="tween_completed" from="SlideTween" to="." method="_on_SlideTween_completed"]

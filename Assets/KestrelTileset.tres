@@ -1,7 +1,6 @@
-[gd_resource type="TileSet" load_steps=55 format=2]
+[gd_resource type="TileSet" load_steps=54 format=2]
 
 [ext_resource path="res://Assets/art/smallTiles.png" type="Texture" id=1]
-[ext_resource path="res://Assets/art/kestrel/pilotPanel2x2.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 4, 4, 28, 4, 28, 32, 4, 32 )
@@ -535,7 +534,6 @@ resource_local_to_scene = true
 } ]
 8/z_index = 0
 9/name = "pilotPanel2x2.png 9"
-9/texture = ExtResource( 2 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 0, 0, 64, 64 )
