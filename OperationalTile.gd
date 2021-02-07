@@ -18,7 +18,8 @@ func tryTile(tileRecord, tilePosition, tileTransformation, isBuildLegal):
             material.set_shader_param('currentColour', green)
         else:
             material.set_shader_param('currentColour', red)
-            
-        set_cellv(tilePosition, lastTileRecord["tileId"], tileTransformation[1], tileTransformation[2], tileTransformation[0])
+        
+        var tileID = lastTileRecord["TileID"]
+        set_cellv(tilePosition, tileID, tileTransformation[1], tileTransformation[2], tileTransformation[0])
     
     return true

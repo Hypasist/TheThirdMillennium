@@ -91,6 +91,7 @@ position = Vector2( -285, -135 )
 rotation = 1.57079
 scale = Vector2( 0.4, 0.3 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 script = ExtResource( 20 )
 
@@ -99,7 +100,6 @@ position = Vector2( -281.256, 135 )
 rotation = 1.5708
 scale = Vector2( 0.4, 0.281279 )
 frames = SubResource( 3 )
-frame = 2
 playing = true
 script = ExtResource( 20 )
 

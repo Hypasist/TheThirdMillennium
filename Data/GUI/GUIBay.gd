@@ -6,8 +6,8 @@ var followedPerson:Person = null
 
 func assignShip(ship:Ship):
     followedShip = ship
-    $GUIShip.assign2Entity(followedShip)
-    $GUIBuilder.assignTilemapManager(followedShip.get_node("TilemapManager"))
+    $GUIShip.assign2Entity(ship)
+    $GUIBuilder.assign2Entity(ship)
     
 func assignPerson(person:Person):
     followedPerson = person

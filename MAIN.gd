@@ -47,7 +47,7 @@ func _ready():
     controlPerson.assignCamera(cameraPerson)
     cameraPerson.assign2Person($People/PERSON)
     
-    controlBuilder.assignControlledObject(SHIP)
+    controlBuilder.assignControlledObject($GUIBay/GUIBuilder/BuilderLogic)
     controlBuilder.assignCamera(cameraBuilder)
     cameraBuilder.assign2Person(SHIP)
     

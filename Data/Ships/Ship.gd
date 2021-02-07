@@ -65,9 +65,6 @@ func processMovement(delta):
     var collision = move_and_collide(objectMovement[0], true, true, false)
     # if collision: kinematic.collisionTest(self, instance_from_id(collision.collider_id), collision.position, collision.normal)
     
-func passBuilderInputs(input):
-    $TilemapManager.gatheredBuilderInputs = input   
-
 func custom_physics_process(delta):
     if (!movementPaused): processMovement(delta)    
 
@@ -86,17 +83,12 @@ func hideInternals():
     $TilemapManager.hide()
     $Hull.get_material().set_shader_param("greyout", false)
 
-
-func _ready():
-    pass
-    
 func setup(tilesetDatabase, _position, _rotation_degrees):
     position = _position
     rotation_degrees = _rotation_degrees
     $TilemapManager.setup(tilesetDatabase)
     kinematic.setPositionAll(position, rotation_degrees)
-    
-    
+        
 func getShipInfo():
     var velRel = kinematic.getVelocityAbsolute()
     var velRot = kinematic.getVelocityRotational()
@@ -105,3 +97,6 @@ func getShipInfo():
     return "Pos: x:%4.2f  y:%4.2f  a:%4.2f\nVel: x:%4.2f  y:%4.2f  a:%4.2f\nMom: x:%4.2f  y:%4.2f  a:%4.2f\n" \
     % [position.x, position.y, rotation_degrees, velRel.x, velRel.y, velRot, momRel.x, momRel.y, momRot]
     
+onready var tilemapManager = $TilemapManager
+func getTilemapManager():
+    return tilemapManager

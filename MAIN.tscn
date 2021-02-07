@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://MAIN.gd" type="Script" id=1]
 [ext_resource path="res://Data/Ships/Ships.gd" type="Script" id=2]
@@ -30,11 +30,12 @@
 [ext_resource path="res://Data/GUI/GUIPerson.gd" type="Script" id=28]
 [ext_resource path="res://BluePrint.gd" type="Script" id=29]
 [ext_resource path="res://experimentalShaders/bluePrintShader.shader" type="Shader" id=30]
+[ext_resource path="res://BuilderLogic.gd" type="Script" id=31]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 30 )
-shader_param/tiled_factor = Vector2( 16, 9.475 )
-shader_param/aspect_ratio = 0.592188
+shader_param/tiled_factor = Vector2( 16, 8.475 )
+shader_param/aspect_ratio = 0.529687
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -94,12 +95,15 @@ paddingBotton = 0
 [node name="BluePrint" type="Sprite" parent="GUIBay/GUIBuilder"]
 visible = false
 material = SubResource( 1 )
-scale = Vector2( 34.1333, 20.2133 )
+scale = Vector2( 34.1333, 18.08 )
 z_index = -2
 z_as_relative = false
 texture = ExtResource( 25 )
 centered = false
 script = ExtResource( 29 )
+
+[node name="BuilderLogic" type="Node" parent="GUIBay/GUIBuilder"]
+script = ExtResource( 31 )
 
 [node name="ControlBay" type="Node" parent="."]
 script = ExtResource( 23 )
@@ -190,5 +194,5 @@ script = ExtResource( 19 )
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 8 )]
 visible = false
-[connection signal="newRecordSelected" from="GUIBay/GUIBuilder/CollectionPanel" to="GUIBay/GUIBuilder" method="_on_CollectionPanel_newRecordSelected"]
+[connection signal="newRecordSelected" from="GUIBay/GUIBuilder/CollectionPanel" to="GUIBay/GUIBuilder/BuilderLogic" method="_on_CollectionPanel_newRecordSelected"]
 [connection signal="item_rect_changed" from="ParallaxBackground/SPACE" to="ParallaxBackground/SPACE" method="calculate_aspect_ratio"]
