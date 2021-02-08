@@ -16,6 +16,11 @@ func _on_Button_objectSelected(button, button_pressed):
         emit_signal("newRecordSelected", null)
 
 
+func clearRecordSelected():
+    currentlySelected.pressed = false
+    currentlySelected = null
+        
+
 const ObjectButtonType = preload("res://Data/GUI/GUIPanels/ObjectButton.tscn")
 var buttonList = []
 func addButton(record):

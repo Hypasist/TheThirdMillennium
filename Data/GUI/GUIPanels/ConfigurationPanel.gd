@@ -1,28 +1,28 @@
 extends NinePatchRect
 
-
 var shipDatabase = null
 func setup(_shipDatabase):
     shipDatabase = _shipDatabase
 
-signal clearShipConfiguration
-signal newShipConfiguration
+func getName():
+    return $ShipName.get_text()
+
+signal configurationNew
 func _on_NewButton_up():
-    #print(shipDatabase)
-    pass
+    emit_signal("configurationNew")
 
-
+signal configurationClear
 func _on_ClearButton_up():
-    pass # Replace with function body.
+    emit_signal("configurationClear")
 
-
+signal configurationLoad(configurationName)
 func _on_LoadButton_up():
-    pass # Replace with function body.
+    emit_signal("configurationLoad", "GreyJay")
 
-
+signal configurationSave(configurationName, shipName)
 func _on_SaveButton_up():
-    pass # Replace with function body.
+    emit_signal("configurationSave", "GreyJay", getName())
 
-
+signal configurationSaveAs(configurationName, shipName)
 func _on_SaveAsButton_up():
-    pass # Replace with function body.
+    emit_signal("configurationSaveAs", "GreyJay", getName())

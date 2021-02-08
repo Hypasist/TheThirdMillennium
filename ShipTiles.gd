@@ -9,8 +9,7 @@ func setup(_tilesetDatabase:Dictionary):
     tilesetDatabase = _tilesetDatabase
     var containerTilemaps = [$FloorTilemap, $WallsTilemap, $InteractableTilemap]
     for tileMap in containerTilemaps:
-        tileMap.setup() 
-        
+        tileMap.setup(tilesetDatabase) 
         
         
 func getTileRecordByID(tileID):
@@ -37,7 +36,18 @@ func isLegalToBuild(tileRecord, tilePosition, tileTransformation):
     $WallsTilemap.doesNotCover(tileRecord, tilePosition, tileTransformation) && \
     $InteractableTilemap.doesNotCover(tileRecord, tilePosition, tileTransformation)
            
+func build(tileRecord, tilePosition, tileTransformation):
+    match tileRecord["TileGroup"]:
+        cons.PANEL_GROUP:
+            $InteractableTilemap.addElement(tileRecord, tilePosition, tileTransformation)
+        cons.WALL_GROUP:
+            $WallsTilemap.addElement(tileRecord, tilePosition, tileTransformation)
+        cons.FLOOR_GROUP:
+            $FloorTilemap.addElement(tileRecord, tilePosition, tileTransformation)
+        _:
+            print("Unrecognized TileGroup! ", tileRecord["TileGroup"])
+            breakpoint                    
+  
 
-    
 func getOperationalTilemap():
     return $OperationalTilemap

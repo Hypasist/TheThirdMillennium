@@ -6,38 +6,19 @@ var ship = get_parent()
 var assignedElements = []
 var allowedTileGroups = []
 
-func setup():
+func setup(tilesetDatabase):
     for tileGroup in allowedTileGroups:
         var tileRecords = get_parent().getTileRecordsByGroup(tileGroup)
         for tileRecord in tileRecords:
             var elementsArray = get_used_cells_by_id(tileRecord["tileId"])
             for elementPosition in elementsArray:
-                var elementTransformation = [is_cell_transposed(elementPosition.x, elementPosition.y), is_cell_x_flipped(elementPosition.x, elementPosition.y), is_cell_y_flipped(elementPosition.x, elementPosition.y)]
+                var elementTransformation = [is_cell_x_flipped(elementPosition.x, elementPosition.y), is_cell_y_flipped(elementPosition.x, elementPosition.y), is_cell_transposed(elementPosition.x, elementPosition.y)]
                 assignedElements.append({"tilePosition": elementPosition, "tileRecord": tileRecord, "tileTransformation": elementTransformation})
 
 
 func addElement(elementRecord, elementPosition, elementTransformation):
     assignedElements.append({"tilePosition": elementPosition, "tileRecord": elementRecord, "tileTransformation": elementTransformation})
-    set_cellv(elementPosition, elementRecord["TileID"], elementTransformation[1], elementTransformation[2], elementTransformation[0])
-
-func addElementCompound(elementRecord, elementPosition, elementTransformation):
-    var transposed = 0
-    var flipped_x = 0
-    var flipped_y = 0
-    
-    if elementTransformation >= cons.TILE_TRANSFORM_FLIPPED_Y:
-        elementTransformation -= cons.TILE_TRANSFORM_FLIPPED_Y
-        flipped_y = 1
-    if elementTransformation >= cons.TILE_TRANSFORM_FLIPPED_X:
-        elementTransformation -= cons.TILE_TRANSFORM_FLIPPED_X
-        flipped_x = 1
-    if elementTransformation >= cons.TILE_TRANSFORM_TRANSPOSED:
-        elementTransformation -= cons.TILE_TRANSFORM_TRANSPOSED
-        transposed = 1
-        
-    assignedElements.append({"tilePosition": elementPosition, "tileRecord": elementRecord, "tileTransformation": elementTransformation})
-    set_cellv(elementPosition, elementRecord["TileID"], flipped_x, flipped_y, transposed)
-
+    set_cellv(elementPosition, elementRecord["TileID"], elementTransformation[0], elementTransformation[1], elementTransformation[2])
 
 func doesIntersect(rect1:Rect2, rect2:Rect2):
     rect1.size -= Vector2(1,1)
@@ -57,7 +38,7 @@ func doesContain(rect1:Rect2, tile:Vector2):
         return false
 
 func concludeTileSize(tileRecord, tileTransformation):
-    if tileTransformation[0]:
+    if tileTransformation[2]:
         return Vector2(tileRecord["TileSize"].y, tileRecord["TileSize"].x)
     else:
         return tileRecord["TileSize"]
@@ -68,6 +49,7 @@ func pinpointElement(elementPosition):
         if doesIntersect(targetElement,  Rect2(element["tilePosition"], concludeTileSize(element["tileRecord"], element["tileTransformation"]))):
             return element
     return null
+
 
 func removeElement(elementPosition):
     var element = pinpointElement(elementPosition)
@@ -102,12 +84,5 @@ func doesCoverFully(elementRecord, elementPosition, elementTransformation):
 
 # TRANSFORM GETTERS
 func getTileTransform(tile):
-    return [is_cell_transposed(tile.x, tile.y), \
-    is_cell_x_flipped(tile.x, tile.y), is_cell_y_flipped(tile.x, tile.y)]
-
-func getTileTransformCompound(tile):
-    var sum = 0
-    if is_cell_transposed(tile.x, tile.y): sum += cons.TILE_TRANSFORM_TRANSPOSED
-    if is_cell_x_flipped(tile.x, tile.y): sum += cons.TILE_TRANSFORM_FLIPPED_X
-    if is_cell_y_flipped(tile.x, tile.y): sum += cons.TILE_TRANSFORM_FLIPPED_Y
-    return sum
+    return [is_cell_x_flipped(tile.x, tile.y), is_cell_y_flipped(tile.x, tile.y), \
+            is_cell_transposed(tile.x, tile.y)]

@@ -34,8 +34,8 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 30 )
-shader_param/tiled_factor = Vector2( 16, 8.475 )
-shader_param/aspect_ratio = 0.529687
+shader_param/tiled_factor = Vector2( 16, 9.475 )
+shader_param/aspect_ratio = 0.592188
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -95,7 +95,7 @@ paddingBotton = 0
 [node name="BluePrint" type="Sprite" parent="GUIBay/GUIBuilder"]
 visible = false
 material = SubResource( 1 )
-scale = Vector2( 34.1333, 18.08 )
+scale = Vector2( 34.1333, 20.2133 )
 z_index = -2
 z_as_relative = false
 texture = ExtResource( 25 )
@@ -195,4 +195,7 @@ script = ExtResource( 19 )
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 8 )]
 visible = false
 [connection signal="newRecordSelected" from="GUIBay/GUIBuilder/CollectionPanel" to="GUIBay/GUIBuilder/BuilderLogic" method="_on_CollectionPanel_newRecordSelected"]
+[connection signal="configurationLoad" from="GUIBay/GUIBuilder/ConfigurationPanel" to="GUIBay/GUIBuilder/BuilderLogic" method="_on_ConfigurationPanel_configurationLoad"]
+[connection signal="configurationSave" from="GUIBay/GUIBuilder/ConfigurationPanel" to="GUIBay/GUIBuilder/BuilderLogic" method="_on_ConfigurationPanel_configurationSave"]
+[connection signal="clearRecordSelected" from="GUIBay/GUIBuilder/BuilderLogic" to="GUIBay/GUIBuilder/CollectionPanel" method="_on_BuilderLogic_clearRecordSelected"]
 [connection signal="item_rect_changed" from="ParallaxBackground/SPACE" to="ParallaxBackground/SPACE" method="calculate_aspect_ratio"]

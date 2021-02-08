@@ -1,9 +1,9 @@
 extends CustomTileMap
 
+
 var knownPanelTypes = [[2, preload("res://Data/ShipInteractables/GunnerPanel.tscn")], \
                        [3, preload("res://Data/ShipInteractables/PilotPanel.tscn")]]
 
-                
 
 func _ready():
     allowedTileGroups = [cons.PANEL_GROUP]
@@ -22,8 +22,7 @@ func _ready():
             error = panelInstance.connect("body_exited", self, "onPlayerExit", [panelInstance])
             if error: print("body_exit ", panelInstance.name, " : ", error)
 
-#var w2m = world_to_map(weaponPanel[0])
-#var cc = get_cell_autotile_coord(used_panels[0][0], used_panels[0][1])
+
 
 func onPlayerEnter(body, panelInstance):
     body.addAvailableInteractable(panelInstance)

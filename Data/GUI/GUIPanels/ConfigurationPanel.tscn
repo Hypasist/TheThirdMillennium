@@ -98,6 +98,7 @@ margin_top = 100.0
 margin_right = 400.0
 margin_bottom = 140.0
 custom_fonts/font = SubResource( 3 )
+text = "GreyJay"
 align = 1
 max_length = 64
 placeholder_text = "Ship Name"

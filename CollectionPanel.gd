@@ -68,7 +68,10 @@ func setup(_tilesetDatabase):
         if item["TileGroup"] != cons.FLOOR_GROUP:
             $CollectionContainer.addButton(item)
 
-
+# --- SIGNALS -----------------------------------------------------------------
 signal newRecordSelected(record)
 func _on_CollectionContainer_newRecordSelected(record):
     emit_signal("newRecordSelected", record)
+
+func _on_BuilderLogic_clearRecordSelected():
+    $CollectionContainer.clearRecordSelected()
