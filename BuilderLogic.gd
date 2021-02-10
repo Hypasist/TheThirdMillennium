@@ -182,12 +182,15 @@ func _on_ConfigurationPanel_configurationLoad(configurationName):
             continue
         
         var record = tilesetDatabase[key]
-        var coordsArray = configuration[key]
-        for coords in coordsArray:
+        for coords in configuration[key]:
             tilemapManager.build(record, Vector2(coords[0], coords[1]), decompoundTransformation(coords[2]))
-
         
     for node in tilemapManager.get_children():
         if node.is_in_group("saveable_tilemaps"):
             node.update_bitmask_region()
     saveFile.close()
+
+
+func _on_ConfigurationPanel_configurationNew(shipRecord):
+    tilemapManager.setNewModel(shipRecord)
+    print(shipRecord)

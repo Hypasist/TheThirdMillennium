@@ -1,5 +1,5 @@
 tool
-extends Node2D
+extends Sprite
 var cons = preload("res://Data/Utils/Constants.gd")
 onready var ship = get_parent()
 
@@ -29,7 +29,6 @@ func getTileRecordsByGroup(tileGroup):
             recordArray.append(tileRecord)
     return recordArray
 
-
     
 func isLegalToBuild(tileRecord, tilePosition, tileTransformation):
     return $FloorTilemap.doesCoverFully(tileRecord, tilePosition, tileTransformation) && \
@@ -51,3 +50,23 @@ func build(tileRecord, tilePosition, tileTransformation):
 
 func getOperationalTilemap():
     return $OperationalTilemap
+
+func setNewModel(shipRecord):
+    var image = Image.new()
+    var err = image.load(shipRecord["ShipGraphic"])
+    if err != OK:
+        print("Couldn't load the texture! ", shipRecord["ShipGraphic"])
+        breakpoint
+    var texture = ImageTexture.new()
+    texture.create_from_image(image, 0)
+    set_texture(texture)
+
+func showInterior():
+    for node in get_children():
+        node.hide()
+    get_material().set_shader_param("greyout", true)
+    
+func hideInterior():
+    for node in get_children():
+        node.show()
+    get_material().set_shader_param("greyout", false)

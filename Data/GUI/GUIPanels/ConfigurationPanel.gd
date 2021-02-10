@@ -7,9 +7,10 @@ func setup(_shipDatabase):
 func getName():
     return $ShipName.get_text()
 
-signal configurationNew
+signal configurationNew(shipRecord)
 func _on_NewButton_up():
-    emit_signal("configurationNew")
+    var shipRecord = shipDatabase["Jay"]
+    emit_signal("configurationNew", shipRecord)
 
 signal configurationClear
 func _on_ClearButton_up():

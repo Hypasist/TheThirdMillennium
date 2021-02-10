@@ -29,7 +29,7 @@ func changeDisplayedGUI(viewMode):
     $GUIPerson.hideGUI()
     $GUIShip.hideGUI()
     $GUIBuilder.hideGUI()
-    followedShip.hideInternals()
+    followedShip.hideInterior()
     
     match viewMode:
         cons.SHIP_VIEW:
@@ -37,11 +37,11 @@ func changeDisplayedGUI(viewMode):
             
         cons.PERSONAL_VIEW:
             $GUIPerson.showGUI()
-            followedShip.showInternals()
+            followedShip.showInterior()
             
         cons.BUILDER_VIEW:
             $GUIBuilder.showGUI()
-            followedShip.showInternals()
+            followedShip.showInterior()
             
             
 func setup(tilesetDatabase, shipDatabase):

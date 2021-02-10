@@ -75,13 +75,11 @@ func passengerLeft(passenger):
     var position = currentPassengers.find(passenger)
     if position >= 0: currentPassengers.remove(position)
     
-func showInternals():
-    $TilemapManager.show()
-    $Hull.get_material().set_shader_param("greyout", true)
+func showInterior():
+    $TilemapManager.showInterior()
     
-func hideInternals():
-    $TilemapManager.hide()
-    $Hull.get_material().set_shader_param("greyout", false)
+func hideInterior():
+    $TilemapManager.hideInterior()
 
 func setup(tilesetDatabase, _position, _rotation_degrees):
     position = _position

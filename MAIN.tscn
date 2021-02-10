@@ -196,6 +196,7 @@ script = ExtResource( 19 )
 visible = false
 [connection signal="newRecordSelected" from="GUIBay/GUIBuilder/CollectionPanel" to="GUIBay/GUIBuilder/BuilderLogic" method="_on_CollectionPanel_newRecordSelected"]
 [connection signal="configurationLoad" from="GUIBay/GUIBuilder/ConfigurationPanel" to="GUIBay/GUIBuilder/BuilderLogic" method="_on_ConfigurationPanel_configurationLoad"]
+[connection signal="configurationNew" from="GUIBay/GUIBuilder/ConfigurationPanel" to="GUIBay/GUIBuilder/BuilderLogic" method="_on_ConfigurationPanel_configurationNew"]
 [connection signal="configurationSave" from="GUIBay/GUIBuilder/ConfigurationPanel" to="GUIBay/GUIBuilder/BuilderLogic" method="_on_ConfigurationPanel_configurationSave"]
 [connection signal="clearRecordSelected" from="GUIBay/GUIBuilder/BuilderLogic" to="GUIBay/GUIBuilder/CollectionPanel" method="_on_BuilderLogic_clearRecordSelected"]
 [connection signal="item_rect_changed" from="ParallaxBackground/SPACE" to="ParallaxBackground/SPACE" method="calculate_aspect_ratio"]
