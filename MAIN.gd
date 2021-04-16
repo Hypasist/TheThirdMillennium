@@ -43,18 +43,18 @@ func _ready():
     controlShip.assignCamera(cameraShip)
     cameraShip.assign2Person(SHIP)
     
-    controlPerson.assignControlledObject($People/PERSON)
+    controlPerson.assignControlledObject($People/Player)
     controlPerson.assignCamera(cameraPerson)
-    cameraPerson.assign2Person($People/PERSON)
+    cameraPerson.assign2Person($People/Player)
     
     controlBuilder.assignControlledObject($GUIBay/GUIBuilder/BuilderLogic)
     controlBuilder.assignCamera(cameraBuilder)
     cameraBuilder.assign2Person(SHIP)
     
     $GUIBay.assignShip(SHIP)
-    $GUIBay.assignPerson($People/PERSON)
+    $GUIBay.assignPerson($People/Player)
     # place person in KESTREL
-    ($People/PERSON).enterShip(SHIP)
+    ($People/Player).enterShip(SHIP)
     
     setGameState(gameMode)
     

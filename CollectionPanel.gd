@@ -65,8 +65,8 @@ func setup(_tilesetDatabase):
     tilesetDatabase = _tilesetDatabase
     for key in tilesetDatabase:
         var item = tilesetDatabase[key]
-        if item["TileGroup"] != cons.FLOOR_GROUP:
-            $CollectionContainer.addButton(item)
+        #if item["TileGroup"] != cons.FLOOR_GROUP:
+        $CollectionContainer.addButton(item)
 
 # --- SIGNALS -----------------------------------------------------------------
 signal newRecordSelected(record)

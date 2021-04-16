@@ -3,8 +3,8 @@ extends Node2D
 
 func getSlotKinematicInfo():
     var shipKinematicInfo = get_parent().getShipKinematicInfo()
-    shipKinematicInfo[0] += position.rotated(deg2rad(shipKinematicInfo[1]))
-    shipKinematicInfo[1] += rotation_degrees
+    shipKinematicInfo["positionAbs"] += position.rotated(deg2rad(shipKinematicInfo["rotationAbs"]))
+    shipKinematicInfo["rotationAbs"] += rotation_degrees
     return shipKinematicInfo
     
 func _ready():

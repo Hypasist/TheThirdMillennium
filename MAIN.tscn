@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://MAIN.gd" type="Script" id=1]
 [ext_resource path="res://Data/Ships/Ships.gd" type="Script" id=2]
@@ -6,14 +6,13 @@
 [ext_resource path="res://Data/Control/ControlShip.gd" type="Script" id=4]
 [ext_resource path="res://OBJECT.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Data/Control/ControlPerson.gd" type="Script" id=6]
-[ext_resource path="res://Person.gd" type="Script" id=7]
+[ext_resource path="res://Data/Persons/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://GUI_elements/GUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Data/Cameras/CameraPerson.gd" type="Script" id=9]
 [ext_resource path="res://Assets/art/ping.png" type="Texture" id=10]
 [ext_resource path="res://People.gd" type="Script" id=11]
 [ext_resource path="res://Celestials.gd" type="Script" id=12]
 [ext_resource path="res://Data/Cameras/CameraBay.gd" type="Script" id=13]
-[ext_resource path="res://Assets/art/icon.png" type="Texture" id=14]
 [ext_resource path="res://Assets/background/back1.png" type="Texture" id=15]
 [ext_resource path="res://Assets/background/test_material.tres" type="Material" id=16]
 [ext_resource path="res://SPACE.gd" type="Script" id=17]
@@ -36,8 +35,6 @@
 shader = ExtResource( 30 )
 shader_param/tiled_factor = Vector2( 16, 9.475 )
 shader_param/aspect_ratio = 0.592188
-
-[sub_resource type="CircleShape2D" id=2]
 
 [node name="GAME" type="Node2D"]
 script = ExtResource( 1 )
@@ -69,6 +66,7 @@ __meta__ = {
 }
 
 [node name="GUIBuilder" type="Control" parent="GUIBay"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -165,18 +163,7 @@ script = ExtResource( 2 )
 [node name="People" type="Node" parent="."]
 script = ExtResource( 11 )
 
-[node name="PERSON" type="KinematicBody2D" parent="People"]
-collision_layer = 4096
-collision_mask = 15360
-script = ExtResource( 7 )
-
-[node name="Sprite" type="Sprite" parent="People/PERSON"]
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 14 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="People/PERSON"]
-scale = Vector2( 0.3, 0.3 )
-shape = SubResource( 2 )
+[node name="Player" parent="People" instance=ExtResource( 7 )]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

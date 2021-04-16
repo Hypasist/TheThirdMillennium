@@ -94,6 +94,15 @@ func getShipInfo():
     var momRot = kinematic.getMomentumRotational()
     return "Pos: x:%4.2f  y:%4.2f  a:%4.2f\nVel: x:%4.2f  y:%4.2f  a:%4.2f\nMom: x:%4.2f  y:%4.2f  a:%4.2f\n" \
     % [position.x, position.y, rotation_degrees, velRel.x, velRel.y, velRot, momRel.x, momRel.y, momRot]
+
+func getKinematicInfo():
+    return {
+        "positionAbs": position,
+        "rotationAbs": rotation_degrees,
+        "velocityAbs": kinematic.getVelocityAbsolute(),
+        "velocityRot": kinematic.getVelocityRotational(),
+        "massCenterAbs": kinematic.getMassCenter() + position
+        }
     
 onready var tilemapManager = $TilemapManager
 func getTilemapManager():

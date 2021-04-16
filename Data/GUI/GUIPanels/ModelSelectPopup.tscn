@@ -1,10 +1,121 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Data/GUI/GUIPanels/PopupBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/art/missing.png" type="Texture" id=2]
+[ext_resource path="res://Assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Data/GUI/GUIPanels/SelectionButtons.gd" type="Script" id=4]
 
-[node name="Control" instance=ExtResource( 1 )]
-margin_right = -1320.0
-margin_bottom = -600.0
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[node name="ModelSelect" instance=ExtResource( 1 )]
+margin_right = -1224.0
+margin_bottom = -701.0
+rect_pivot_offset = Vector2( 348, 249.5 )
 
 [node name="Label" parent="." index="0"]
-percent_visible = 1.0
+margin_right = -432.0
+margin_bottom = 23.0
+text = "Select you new ship model"
+
+[node name="MainContainer" parent="." index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -10.0
+margin_bottom = -10.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/VBoxContainer" index="0"]
+margin_right = 676.0
+margin_bottom = 428.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectionButtons" type="ScrollContainer" parent="MainContainer/VBoxContainer/HBoxContainer" index="0"]
+margin_right = 337.0
+margin_bottom = 428.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/VBoxContainer/HBoxContainer/SelectionButtons" index="0"]
+margin_right = 337.0
+margin_bottom = 428.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/VBoxContainer/HBoxContainer" index="1"]
+margin_left = 339.0
+margin_right = 676.0
+margin_bottom = 428.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="0"]
+margin_right = 337.0
+margin_bottom = 212.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="MainContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="1"]
+margin_top = 216.0
+margin_right = 337.0
+margin_bottom = 428.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Something something
+rich text
+muh ship"
+
+[node name="ResolvingButtons" type="HBoxContainer" parent="MainContainer/VBoxContainer" index="1"]
+margin_top = 432.0
+margin_right = 676.0
+margin_bottom = 457.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer/VBoxContainer/ResolvingButtons" index="0"]
+margin_right = 336.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 50
+custom_constants/margin_left = 50
+
+[node name="Button" type="Button" parent="MainContainer/VBoxContainer/ResolvingButtons/MarginContainer" index="0"]
+margin_left = 50.0
+margin_right = 286.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
+text = "Accept"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MainContainer/VBoxContainer/ResolvingButtons" index="1"]
+margin_left = 340.0
+margin_right = 676.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 50
+custom_constants/margin_left = 50
+
+[node name="Button" type="Button" parent="MainContainer/VBoxContainer/ResolvingButtons/MarginContainer2" index="0"]
+margin_left = 50.0
+margin_right = 286.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 2 )
+text = "Cancel"

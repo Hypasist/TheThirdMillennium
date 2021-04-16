@@ -13,7 +13,8 @@
       "TileFamily": "Basic",
       "TileFraction": "Terra Republic",
       "TileName": "Steel Floor",
-      "TileDescription": "Basic floor."
+      "TileDescription": "Basic floor.",
+      "TileRotatable": false
     },
     "BasicSteelWall": {
       "TileID": 0,
@@ -28,7 +29,8 @@
       "TileFamily": "Basic",
       "TileFraction": "Terra Republic",
       "TileName": "Steel Wall",
-      "TileDescription": "Basic wall."
+      "TileDescription": "Basic wall.",
+      "TileRotatable": false
     },
     "HertigDoublePilotPanel": {
       "TileID": 7,
@@ -43,7 +45,8 @@
       "TileFamily": "Hertig",
       "TileFraction": "Terra Republic",
       "TileName": "Double pilot panel",
-      "TileDescription": "Double pilot panel, Herig model. Relatively cheap, yet sturdy. Not very comfy."
+      "TileDescription": "Double pilot panel, Herig model. Relatively cheap, yet sturdy. Not very comfy.",
+      "TileRotatable": true
     },
     "HertigPilotPanel": {
       "TileID": 9,
@@ -58,7 +61,8 @@
       "TileFamily": "Hertig",
       "TileFraction": "Terra Republic",
       "TileName": "Pilot panel",
-      "TileDescription": "Single pilot panel, Herig model. Relatively cheap, yet sturdy. Not very comfy."
+      "TileDescription": "Single pilot panel, Herig model. Relatively cheap, yet sturdy. Not very comfy.",
+      "TileRotatable": true
     },
     "HertigGunnerPanel": {
       "TileID": 8,
@@ -73,19 +77,24 @@
       "TileFamily": "Hertig",
       "TileFraction": "Terra Republic",
       "TileName": "Gunner Station",
-      "TileDescription": "Gunner station, Herig model. Relatively cheap, yet sturdy. Not very comfy."
+      "TileDescription": "Gunner station, Herig model. Relatively cheap, yet sturdy. Not very comfy.",
+      "TileRotatable": true
     }
   },
   "Ships": {
-    "Kestrel": {
+    "StandardKestrel": {
+	  "ShipName": "Kestrel",
       "ShipClass": "Frigate",
       "ShipFraction": "Terra Republic",
-      "ShipGraphic": "Kestrel.png"
+      "ShipGraphic": "Kestrel.png",
+      "ShipBaseConfiguration": "baseKestrel"
     },
-    "Jay": {
+    "StandardJay": {
+	  "ShipName": "Jay",
       "ShipClass": "Civil Class Corvette",
       "ShipFraction": "Terra Republic",
-      "ShipGraphic": "Jay.png"
+      "ShipGraphic": "Jay.png",
+      "ShipBaseConfiguration": "baseJay"
     }
   }
 }

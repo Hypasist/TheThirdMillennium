@@ -18,7 +18,7 @@ func gather_and_distribute_input():
             inputs.append(cons.BUILDER_ROTATE_LEFT)
         if Input.is_action_just_pressed("ui_turn_right"):
             inputs.append(cons.BUILDER_ROTATE_RIGHT)
-        if Input.is_action_just_pressed("ui_confirm"):
+        if Input.is_action_pressed("ui_confirm"):
             inputs.append(cons.BUILDER_ACCEPT)
         if Input.is_action_just_pressed("ui_abort"):
             inputs.append(cons.BUILDER_CANCEL)

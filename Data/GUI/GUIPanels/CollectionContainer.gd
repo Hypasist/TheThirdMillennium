@@ -1,4 +1,5 @@
 extends ScrollContainer
+const cons = preload("res://Data/Utils/Constants.gd")
 
 var currentlySelected = null
 signal newRecordSelected(record)
@@ -26,7 +27,7 @@ var buttonList = []
 func addButton(record):
     var button = ObjectButtonType.instance()
     button.setName(record["TileName"])
-    button.setTexture(record["TileSprite"])
+    button.setTexture(record["TileSprite"]) if record["TileSprite"] else button.setTexture(cons.MISSING_IMAGE_PATH)
     button.setRecord(record)
     button.connect("objectSelected", self, "_on_Button_objectSelected")
     $HBoxContainer/GridContainer.add_child(button)

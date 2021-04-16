@@ -1,8 +1,9 @@
-extends NinePatchRect
+extends Control
 
 var shipDatabase = null
 func setup(_shipDatabase):
     shipDatabase = _shipDatabase
+    $ModelSelect.setup(shipDatabase)
 
 func getName():
     return $ShipName.get_text()

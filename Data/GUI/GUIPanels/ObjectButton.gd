@@ -1,10 +1,6 @@
 tool
 extends Button
 
-export (Color) var yellow
-export (Color) var white
-
-
 export(String) var nameLabel = "" setget setName
 func setName(newName):
     nameLabel = newName
@@ -60,11 +56,10 @@ func setIconSizeBoundaries(newBoundaries):
         updateIconSize()
 
 func _on_Button_mouse_entered():
-    $Name.add_color_override("font_color", white)
+    $Name.add_color_override("font_color", Color.white)
 
 func _on_Button_mouse_exited():
-    $Name.add_color_override("font_color", yellow)
-
+    $Name.add_color_override("font_color", Color.goldenrod)
 
 signal objectSelected(button, button_pressed)
 func _on_Button_toggled(button_pressed):

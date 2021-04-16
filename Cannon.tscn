@@ -3,8 +3,6 @@
 [ext_resource path="res://Assets/art/test_cannon.png" type="Texture" id=1]
 [ext_resource path="res://Cannon.gd" type="Script" id=2]
 
-
-
 [node name="Cannon" type="Node2D"]
 position = Vector2( 13, -130 )
 rotation = 0.785398

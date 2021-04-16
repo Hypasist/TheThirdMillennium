@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Cannon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/KestrelTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Assets/Shaders/ShipGreyout.shader" type="Shader" id=3]
 [ext_resource path="res://WeaponSlotsContainer.gd" type="Script" id=4]
 [ext_resource path="res://WeaponSlot.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Ships/Jay.png" type="Texture" id=6]
 [ext_resource path="res://OperationalTile.gd" type="Script" id=7]
 [ext_resource path="res://ShipTiles.gd" type="Script" id=8]
 [ext_resource path="res://WallsTilemap.gd" type="Script" id=9]
@@ -18,7 +19,7 @@
 [ext_resource path="res://Assets/art/test_cannon.png" type="Texture" id=19]
 [ext_resource path="res://Engine.gd" type="Script" id=20]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 17 ), ExtResource( 15 ) ],
 "loop": true,
@@ -26,11 +27,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 3 )
 shader_param/greyout = null
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 uniform vec4 currentColour : hint_color;
 
@@ -39,8 +40,8 @@ void fragment () {
     COLOR = finalColour;
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/currentColour = Color( 0.92549, 0.933333, 0.541176, 1 )
 
 [node name="Ship" type="KinematicBody2D"]
@@ -54,7 +55,8 @@ script = ExtResource( 11 )
 position = Vector2( -285, -135 )
 rotation = 1.57079
 scale = Vector2( 0.4, 0.3 )
-frames = SubResource( 3 )
+frames = SubResource( 1 )
+frame = 1
 playing = true
 script = ExtResource( 20 )
 
@@ -62,8 +64,7 @@ script = ExtResource( 20 )
 position = Vector2( -281.256, 135 )
 rotation = 1.5708
 scale = Vector2( 0.4, 0.281279 )
-frames = SubResource( 3 )
-frame = 2
+frames = SubResource( 1 )
 playing = true
 script = ExtResource( 20 )
 
@@ -106,16 +107,18 @@ position = Vector2( 0, 0 )
 rotation = 0.0
 
 [node name="TilemapManager" type="Sprite" parent="."]
-material = SubResource( 7 )
+material = SubResource( 2 )
 position = Vector2( 0, 7.62939e-06 )
-scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 6 )
 script = ExtResource( 8 )
+tilemapsScale = 0.55
 
 [node name="FloorTilemap" type="TileMap" parent="TilemapManager" groups=[
 "floor_tilemaps",
 "saveable_tilemaps",
 ]]
 rotation = 1.13687e-12
+scale = Vector2( 0.55, 0.55 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32
@@ -129,6 +132,7 @@ script = ExtResource( 13 )
 "wall_tilemaps",
 ]]
 rotation = 1.13687e-12
+scale = Vector2( 0.55, 0.55 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 1024
@@ -139,8 +143,9 @@ script = ExtResource( 9 )
 [node name="OperationalTilemap" type="TileMap" parent="TilemapManager" groups=[
 "operational_tilemaps",
 ]]
-material = SubResource( 5 )
+material = SubResource( 4 )
 rotation = 1.13687e-12
+scale = Vector2( 0.55, 0.55 )
 z_index = 1
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
@@ -155,6 +160,7 @@ green = Color( 0, 1, 0, 0.686275 )
 "interactable_tilemaps",
 "saveable_tilemaps",
 ]]
+scale = Vector2( 0.55, 0.55 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 32

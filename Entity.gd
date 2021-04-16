@@ -16,4 +16,3 @@ func pauseMovement():
     
 func unpauseMovement():
     movementPaused = false
-    

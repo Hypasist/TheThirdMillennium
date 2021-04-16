@@ -3,6 +3,13 @@ extends Sprite
 var cons = preload("res://Data/Utils/Constants.gd")
 onready var ship = get_parent()
 
+# --- TOOL SCRIPTS ------------------------------------------------------------
+export var tilemapsScale = 0.6 setget setTilemapsScale
+func setTilemapsScale(scale):
+    tilemapsScale = scale
+    for node in get_children():
+        node.set_scale(Vector2(scale, scale))
+
 # --- SETUP -------------------------------------------------------------------
 var tilesetDatabase = null
 func setup(_tilesetDatabase:Dictionary):
@@ -63,10 +70,10 @@ func setNewModel(shipRecord):
 
 func showInterior():
     for node in get_children():
-        node.hide()
+        node.show()
     get_material().set_shader_param("greyout", true)
     
 func hideInterior():
     for node in get_children():
-        node.show()
+        node.hide()
     get_material().set_shader_param("greyout", false)

@@ -10,8 +10,8 @@ var cannonRotationSpeed = 100
 
 func getWeaponKinematicInfo():
     var slotKinematicInfo = get_parent().getSlotKinematicInfo()
-    slotKinematicInfo[0] += position.rotated(deg2rad(slotKinematicInfo[1]))
-    slotKinematicInfo[1] += rotation_degrees
+    slotKinematicInfo["positionAbs"] += position.rotated(deg2rad(slotKinematicInfo["rotationAbs"]))
+    slotKinematicInfo["rotationAbs"] += rotation_degrees
     return slotKinematicInfo
 
 
@@ -27,18 +27,18 @@ func setBarrelAngle(f:float):
 
 func _process(delta):
     var weaponKinematicInfo = getWeaponKinematicInfo()
-    var currentAngleAbsolute = rad2deg((space.get_global_mouse_position() - weaponKinematicInfo[0]).angle())
+    var currentAngleAbsolute = rad2deg((space.get_global_mouse_position() - weaponKinematicInfo["positionAbs"]).angle())
     var currentAngleRelative = getBarrelAngle()
-    var targetAngleRelative = clamp(fmod(currentAngleAbsolute - weaponKinematicInfo[1] + 540, 360) - 180, -cannonMaxAngle, cannonMaxAngle)
+    var targetAngleRelative = clamp(fmod(currentAngleAbsolute - weaponKinematicInfo["rotationAbs"] + 540, 360) - 180, -cannonMaxAngle, cannonMaxAngle)
     var diffAngle = clamp(fmod(targetAngleRelative - currentAngleRelative + 540, 360) - 180, -delta*cannonRotationSpeed, delta*cannonRotationSpeed)
     setBarrelAngle(getBarrelAngle() + diffAngle)
     
 func shoot(container):
     var weaponKinematicInfo = getWeaponKinematicInfo()
-    weaponKinematicInfo[1] += getBarrelAngle()
-    weaponKinematicInfo[2] += Vector2(projectileBaseSpeed, 0).rotated(deg2rad(weaponKinematicInfo[1]))
-    weaponKinematicInfo[2] += (weaponKinematicInfo[4] - weaponKinematicInfo[0]) * weaponKinematicInfo[3]
+    weaponKinematicInfo["rotationAbs"] += getBarrelAngle()
+    weaponKinematicInfo["velocityAbs"] += Vector2(projectileBaseSpeed, 0).rotated(deg2rad(weaponKinematicInfo["rotationAbs"]))
+    weaponKinematicInfo["velocityAbs"] += (weaponKinematicInfo["massCenterEhWhat"] - weaponKinematicInfo["positionAbs"]) * weaponKinematicInfo["velocityRot"]
     
     var projectile = LASER.instance()
-    projectile.setup(weaponKinematicInfo[0], weaponKinematicInfo[1], weaponKinematicInfo[2], projectileBaseLifetime)
+    projectile.setup(weaponKinematicInfo["positionAbs"], weaponKinematicInfo["rotationAbs"], weaponKinematicInfo["velocityAbs"], projectileBaseLifetime)
     container.add_child(projectile)

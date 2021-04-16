@@ -19,7 +19,8 @@ func setup(tilesetDatabase):
 func addElement(elementRecord, elementPosition, elementTransformation):
     assignedElements.append({"tilePosition": elementPosition, "tileRecord": elementRecord, "tileTransformation": elementTransformation})
     set_cellv(elementPosition, elementRecord["TileID"], elementTransformation[0], elementTransformation[1], elementTransformation[2])
-
+    update_bitmask_region()
+                
 func doesIntersect(rect1:Rect2, rect2:Rect2):
     rect1.size -= Vector2(1,1)
     rect2.size -= Vector2(1,1)

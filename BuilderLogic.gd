@@ -38,9 +38,11 @@ func custom_physics_process():
                 else:
                     action = cons.BUILDER_REMOVE_TILE
             cons.BUILDER_ROTATE_LEFT:
-                currentTileTransformation = transformationRotateLeft(currentTileTransformation)
+                if currentTileRecord && currentTileRecord["TileRotatable"]:
+                    currentTileTransformation = transformationRotateLeft(currentTileTransformation)
             cons.BUILDER_ROTATE_RIGHT:
-                currentTileTransformation = transformationRotateRight(currentTileTransformation)
+                if currentTileRecord && currentTileRecord["TileRotatable"]:
+                    currentTileTransformation = transformationRotateRight(currentTileTransformation)
             _:
                 print(gatheredBuilderInputs.front(), " !"); breakpoint
         gatheredBuilderInputs.pop_front()
@@ -61,7 +63,6 @@ func custom_physics_process():
         cons.BUILDER_REMOVE_TILE:
             print("REMOVE_TILE")
             var currentTilePosition = calculatePosition()
-            currentTileRecord["tileMap"].removeElement(currentTilePosition)
         cons.BUILDER_TRY_TILE:
             var currentTilePositionOffsetted = calculateOffsettedPosition(currentTileRecord, currentTileTransformation)
             var isLegal = tilemapManager.isLegalToBuild(currentTileRecord, currentTilePositionOffsetted, currentTileTransformation)
@@ -99,12 +100,12 @@ func transformationRotateRight(current):
         return [0, 0, 0]
 
 func calculatePosition():
-    var mousePosition = (operationalTilemap.get_global_mouse_position() - assignedShip.position).rotated(deg2rad(-assignedShip.rotation_degrees)) / tilemapManager.scale
+    var mousePosition = (operationalTilemap.get_global_mouse_position() - assignedShip.position).rotated(deg2rad(-assignedShip.rotation_degrees)) / tilemapManager.tilemapsScale
     return operationalTilemap.world_to_map(mousePosition)
 
 func calculateOffsettedPosition(record, transformation):
     var tileSize = operationalTilemap.concludeTileSize(record, transformation)
-    var mousePosition = (operationalTilemap.get_global_mouse_position() - assignedShip.position).rotated(deg2rad(-assignedShip.rotation_degrees)) / tilemapManager.scale
+    var mousePosition = (operationalTilemap.get_global_mouse_position() - assignedShip.position).rotated(deg2rad(-assignedShip.rotation_degrees)) / tilemapManager.tilemapsScale
     var mousePositionOffset = (Vector2(operationalTilemap.get_cell_size().x * tileSize.x, operationalTilemap.get_cell_size().y * tileSize.y) / 2 ) - \
                                         operationalTilemap.get_cell_size() / 2
     return operationalTilemap.world_to_map(mousePosition - mousePositionOffset)
@@ -137,6 +138,7 @@ func compoundTransformation(current):
 signal clearRecordSelected
 
 func _on_CollectionPanel_newRecordSelected(record):
+    currentTileTransformation = [0, 0, 0]
     currentTileRecord = record
 
 
@@ -165,6 +167,9 @@ func _on_ConfigurationPanel_configurationSave(configurationName, shipName):
 
 func _on_ConfigurationPanel_configurationLoad(configurationName):
     var configurationFileName = "res://ShipConfigs/" + configurationName + ".sc"
+    loadConfiguration(configurationFileName)
+    
+func loadConfiguration(configurationFileName):
     var saveFile = File.new()
     if !saveFile.file_exists(configurationFileName):
         print("File not found! ", configurationFileName)
@@ -193,4 +198,5 @@ func _on_ConfigurationPanel_configurationLoad(configurationName):
 
 func _on_ConfigurationPanel_configurationNew(shipRecord):
     tilemapManager.setNewModel(shipRecord)
-    print(shipRecord)
+    var defaultConfigurationFileName = "res://ShipConfigs/default/" + shipRecord["ShipBaseConfiguration"] + ".sc"
+    #loadConfiguration(defaultConfigurationFileName)

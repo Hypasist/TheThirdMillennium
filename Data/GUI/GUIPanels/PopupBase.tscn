@@ -1,21 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/art/Popup.png" type="Texture" id=1]
 [ext_resource path="res://Assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Data/GUI/GUIPanels/PopupBase.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
 
-[node name="Control" type="NinePatchRect"]
+[node name="Panel" type="NinePatchRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1620.0
-margin_bottom = -900.0
+margin_right = -1499.0
+margin_bottom = -798.0
+rect_pivot_offset = Vector2( 210.5, 201 )
 texture = ExtResource( 1 )
 patch_margin_left = 40
 patch_margin_top = 35
 patch_margin_right = 90
 patch_margin_bottom = 10
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -28,5 +31,17 @@ margin_right = 40.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 1 )
 text = "A popup panel"
-percent_visible = 5.45455
 max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainContainer" type="Control" parent="."]
+margin_left = 10.0
+margin_top = 32.0
+margin_right = 411.0
+margin_bottom = 392.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="resized" from="." to="." method="_on_Control_resized"]
